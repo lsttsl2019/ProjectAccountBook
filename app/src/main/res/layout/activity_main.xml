@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/draweerlayout"
     tools:context=".MainActivity">
 
 
@@ -41,6 +44,8 @@
 
         </android.support.design.widget.AppBarLayout>
 
+
+
         <!--Content영역-->
 
         <android.support.v4.view.ViewPager
@@ -53,6 +58,15 @@
 
     </LinearLayout>
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/drawer_haer"
+        app:menu="@menu/drwer_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.design.widget.NavigationView>
 
 
-</layout>
+</android.support.v4.widget.DrawerLayout>
