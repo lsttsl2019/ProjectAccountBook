@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+     tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
         getSupportActionBar().setSubtitle(tab.getText());
