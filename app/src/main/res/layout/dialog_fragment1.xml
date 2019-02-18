@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#25AFEC">
+
+    <TextView
+        android:id="@+id/tv_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="날짜 : "
+        android:textColor="#FFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="16dp"
+        />
+    <TextView
+        android:id="@+id/tv_seletDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="날짜를 선택하세요 "
+        android:layout_toRightOf="@id/tv_day"
+        android:textSize="16dp"
+        android:clickable="true"
+        android:textColor="#FFF"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/tv_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="장소 : "
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="#FFF"
+        android:layout_below="@id/tv_day"
+        android:layout_marginLeft="16dp"/>
+
+    <EditText
+        android:id="@+id/ed_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_below="@id/tv_day"
+        android:layout_toRightOf="@id/tv_place"
+        android:hint="지출한 장소를 입력하세요"
+        android:textColor="#FFFF"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:singleLine="true"
+        />
+
+
+
+</RelativeLayout>
