@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="날짜 : "
         android:textColor="#000"
+        android:layout_marginBottom="4dp"
         android:textSize="16dp"
         android:textStyle="bold"
         android:layout_marginLeft="16dp"
@@ -22,8 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="설정눌러 설정하세요"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="8dp"
         android:layout_toRightOf="@id/tv_day"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:layout_marginTop="12dp"
         android:textStyle="bold"/>
 
@@ -38,7 +41,8 @@
         android:text="설정"
         android:textColor="#000"
         android:textSize="12dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="clickDay"/>
 
     <TextView
         android:layout_marginTop="16dp"
@@ -46,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="장소 : "
+        android:layout_marginBottom="4dp"
         android:textStyle="bold"
         android:textSize="16dp"
         android:textColor="#000"
@@ -56,8 +61,9 @@
         android:id="@+id/ed_inputplace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:layout_below="@id/tv_day"
+        android:textSize="14dp"
+        android:layout_marginLeft="4dp"
+        android:layout_alignBaseline="@id/tv_place"
         android:layout_toRightOf="@id/tv_place"
         android:hint="지출한 장소를 입력하세요"
         android:textColor="#000"
@@ -83,61 +89,58 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_money"
-        android:layout_below="@id/tv_place"
+        android:layout_alignBaseline="@id/tv_money"
         android:hint="금액 입력해주세요"
         android:inputType="number"
-        android:textSize="16dp"
-        android:gravity="right"/>
+        android:textSize="14dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="2dp"
+        android:gravity="center"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="원"
-        android:layout_below="@id/ed_inputplace"
+        android:layout_alignBaseline="@id/tv_money"
         android:layout_toRightOf="@id/ed_money"
         android:layout_marginTop="10dp"
-        android:textSize="16dp"
+        android:textSize="13dp"
         android:textStyle="bold"
         android:textColor="#000"
         />
-    <ImageView
-        android:id="@+id/img_add"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_below="@id/tv_money"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/imgadd"
 
-        />
+  <RelativeLayout
+
+      android:layout_width="230dp"
+      android:layout_height="160dp"
+      android:layout_below="@id/tv_money"
+      android:layout_marginLeft="24dp"
+      android:layout_marginTop="16dp"
+      >
+
+      <ImageView
+          android:layout_width="230dp"
+          android:layout_height="160dp"
+          android:src="@drawable/img_back01"
+          android:id="@+id/img_addbill"
+          />
+
+      <ImageView
+          android:id="@+id/btn_addbill"
+          android:layout_width="34dp"
+          android:layout_height="34dp"
+          android:src="@drawable/add_icon"
+          android:alpha="0.6"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentRight="true"
+          android:paddingRight="4dp"
+          android:paddingBottom="4dp"/>
 
 
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@id/tv_money"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/img_add"
-        android:src="@color/Account" />
 
-    <ImageView
-        android:id="@+id/sava"
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:src="@drawable/btn_save"
-        android:layout_below="@id/img"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"/>
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:src="@drawable/btn_can"
-        android:layout_below="@id/img"
-        android:layout_toRightOf="@id/sava"
-        android:layout_marginTop="10dp"
-        />
+  </RelativeLayout>
+
+
 
 
 
