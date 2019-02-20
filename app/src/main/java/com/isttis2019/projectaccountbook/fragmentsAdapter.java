@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 
 
-public class MyAdapter extends FragmentPagerAdapter {
+public class fragmentsAdapter extends FragmentPagerAdapter {
     Fragment[] fragments =new Fragment[4];
     String[] titles=new String[]{"지출", "수입", "달력", "그래프"};
 
-    public MyAdapter(FragmentManager fm) {
+    public fragmentsAdapter(FragmentManager fm) {
         super(fm);
         fragments[0]=new Page1Fragment();
         fragments[1]=new Page2Fragment();

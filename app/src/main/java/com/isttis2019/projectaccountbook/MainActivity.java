@@ -1,10 +1,7 @@
 package com.isttis2019.projectaccountbook;
 
-import android.databinding.Bindable;
-import android.databinding.DataBindingUtil;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
 
   Toolbar toolbar;
-  MyAdapter myAdapter;
+  fragmentsAdapter fragmentsAdapter;
   ViewPager viewPager;
   TabLayout tabLayout;
 
@@ -38,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     viewPager=findViewById(R.id.viewPager);
     tabLayout=findViewById(R.id.layout_tab);
 
-    myAdapter=new MyAdapter(getSupportFragmentManager());
-    viewPager.setAdapter(myAdapter);
+    fragmentsAdapter =new fragmentsAdapter(getSupportFragmentManager());
+    viewPager.setAdapter(fragmentsAdapter);
     tabLayout.setupWithViewPager(viewPager);
     //테이블 레이아웃
 

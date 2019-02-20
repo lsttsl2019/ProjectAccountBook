@@ -16,7 +16,7 @@ public class Page2Fragment extends Fragment {
     View view=inflater.inflate(R.layout.fragment_page2, container,false);
 
 //    MainActivity ma = (MainActivity) getActivity();
-//    Page1Fragment p1 = (Page1Fragment) ma.myAdapter.fragments[0];
+//    Page1Fragment p1 = (Page1Fragment) ma.fragmentsAdapter.fragments[0];
 //
 
         return view;
