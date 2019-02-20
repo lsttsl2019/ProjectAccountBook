@@ -87,10 +87,7 @@ public class Page1Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view=inflater.inflate(R.layout.fragment_page1, container,false);
 
-        page1Items.add(new Page1_item("asdjfkls","asdfsad","sadfsd","asdfsdaf","dkakak"));
-        page1Items.add(new Page1_item("asdjfkls","asdfsad","sadfsd","asdfsdaf","dkakak"));
-        page1Items.add(new Page1_item("asdjfkls","asdfsad","sadfsd","asdfsdaf","dkakak"));
-        page1Items.add(new Page1_item("asdjfkls","asdfsad","sadfsd","asdfsdaf","dkakak"));
+
 
         b = DataBindingUtil.inflate(inflater, R.layout.fragment_page1, container, false);
 
@@ -100,7 +97,7 @@ public class Page1Fragment extends Fragment {
         ivAdd=view.findViewById(R.id.iv_add);
         calendar=Calendar.getInstance();
         listView=view.findViewById(R.id.page01_listview);
-        listViewAdapter=new Page1_ListView_Adapter(page1Items,getLayoutInflater(),getActivity());
+        listViewAdapter=new Page1_ListView_Adapter(page1Items,getContext());
         listView.setAdapter(listViewAdapter);
 
 
@@ -172,7 +169,7 @@ public class Page1Fragment extends Fragment {
                             Toast.makeText(getActivity(), "금액을 입력해주세요", Toast.LENGTH_SHORT).show();
                             dialog.cancel();
                         }else {
-                            if(tvDay.equals("")&& edPlace.equals("") || edMoney.equals("")){
+
                           day= tvDay.getText().toString();
                           place= edPlace.getText().toString();
                           money= edMoney.getText().toString();
@@ -184,11 +181,8 @@ public class Page1Fragment extends Fragment {
 
 
                             page1Items.add(0,new Page1_item(day, place, dateTime,money, path));
-                            listView.notify();
 
-
-
-                            }
+                            listViewAdapter.notifyDataSetChanged();
 
                         }
 
@@ -196,6 +190,7 @@ public class Page1Fragment extends Fragment {
 
                         }//데이터 추가작업
                     });
+
 
                     builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                         @Override

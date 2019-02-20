@@ -17,15 +17,16 @@ import java.util.ArrayList;
 
 public class Page1_ListView_Adapter extends BaseAdapter {
 
-    Context context;
 
 
+    MainActivity activity;
     ArrayList<Page1_item> page1Items;
     LayoutInflater inflater;
+    Context context;
 
-    public Page1_ListView_Adapter(ArrayList<Page1_item> page1Items, LayoutInflater inflater, Context context) {
+    public Page1_ListView_Adapter(ArrayList<Page1_item> page1Items, Context context) {
         this.page1Items = page1Items;
-        this.inflater = inflater;
+        this.inflater = LayoutInflater.from(context);
         this.context = context;
     }
 
