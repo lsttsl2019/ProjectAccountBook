@@ -3,32 +3,34 @@ package com.isttis2019.projectaccountbook;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
+import java.util.Calendar;
+
 public class Page1_item {
 
-    String dayData;
+    Calendar calendar;
     String placeData;
     String timeData;
     String moneyData;
     String path;
 
 
-
-
-    public Page1_item(String dayData, String placeData, String timeData, String moneyData, String path) {
-        this.dayData = dayData;
+    public Page1_item(Calendar calendar, String placeData, String timeData, String moneyData, String path) {
+        this.calendar= calendar;
         this.placeData = placeData;
         this.moneyData = moneyData;
         this.path= path;
         this.timeData=timeData;
     }
 
-    public String getDatData() {
-        return dayData;
+    public Calendar getCalendar() {
+        return calendar;
     }
 
-    public void setDatData(String datData) {
-        this.dayData = datData;
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
+
+
 
     public String getPlaceData() {
         return placeData;
@@ -47,13 +49,7 @@ public class Page1_item {
     }
 
 
-    public String getDayData() {
-        return dayData;
-    }
 
-    public void setDayData(String dayData) {
-        this.dayData = dayData;
-    }
 
     public String getPath() {
         return path;

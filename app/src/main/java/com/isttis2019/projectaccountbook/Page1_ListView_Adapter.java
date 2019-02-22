@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Page1_ListView_Adapter extends BaseAdapter {
 
@@ -24,6 +25,8 @@ public class Page1_ListView_Adapter extends BaseAdapter {
     ArrayList<Page1_item> page1Items;
     LayoutInflater inflater;
     Context context;
+    Uri uri;
+
 
     public Page1_ListView_Adapter(ArrayList<Page1_item> page1Items, Context context) {
         this.page1Items = page1Items;
@@ -62,19 +65,23 @@ public class Page1_ListView_Adapter extends BaseAdapter {
 
        Page1_item page1Item=page1Items.get(position);
 
-        Uri uri=Uri.parse(page1Item.path);
-        if (uri!=null){
-            Picasso.with(context).load(uri).into(imgbill);
-        }else {
-            Picasso.with(context).load(page1Item.path).into(imgbill);
+       if (uri!=null){
+           uri=Uri.parse(page1Item.path);
 
-        }
+           Picasso.with(context).load(uri).into(imgbill);
 
 
+       }
+
+
+        int cyea=page1Item.calendar.get(Calendar.YEAR);
+        int cmonth=page1Item.calendar.get(Calendar.MONDAY);
+        int cday=page1Item.calendar.get(Calendar.DAY_OF_MONTH);
 
 
 
-       tvday.setText(page1Item.dayData);
+
+       tvday.setText(cyea+""+(cmonth+1)+""+cday);
        tvtime.setText(page1Item.timeData);
        tvpalce.setText(page1Item.placeData);
        tvmoney.setText(page1Item.moneyData);
