@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/tv_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="날짜 : "
+        android:textColor="#000"
+        android:layout_marginBottom="4dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        />
+    <TextView
+        android:id="@+id/fg2_dialog_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:hint="설정하세요"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="8dp"
+        android:layout_toRightOf="@id/tv_day"
+        android:textSize="14dp"
+        android:layout_marginTop="12dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/fg2_dialog_btnday"
+        android:layout_width="26dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/fg2_dialog_day"
+        android:background="#00ff0000"
+        android:text="설정"
+        android:textColor="#000"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:onClick="clickDay"/>
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/tv_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="장소 : "
+        android:layout_marginBottom="4dp"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="#000"
+        android:layout_below="@id/tv_day"
+        android:layout_marginLeft="16dp"/>
+
+    <Spinner
+        android:id="@+id/fg2_dialog_spinner"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@id/tv_place"
+        android:layout_marginTop="50dp"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사용한 금액 : "
+        android:layout_below="@id/tv_place"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+    <EditText
+        android:id="@+id/fg2_dialog_money"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_money"
+        android:layout_alignBaseline="@id/tv_money"
+        android:hint="금액 입력해주세요"
+        android:inputType="number"
+        android:textSize="14dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="2dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="원"
+        android:layout_alignBaseline="@id/tv_money"
+        android:layout_toRightOf="@id/fg2_dialog_money"
+        android:layout_marginTop="10dp"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        />
+
+
+
+
+
+
+
+  </RelativeLayout>
+
+
+
+
+
+
+

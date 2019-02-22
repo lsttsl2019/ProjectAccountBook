@@ -9,16 +9,16 @@ public class Page1_item {
     String placeData;
     String timeData;
     String moneyData;
-    String imgBill;
+    String path;
 
 
 
 
-    public Page1_item(String dayData, String placeData, String timeData, String moneyData, String imgBill) {
+    public Page1_item(String dayData, String placeData, String timeData, String moneyData, String path) {
         this.dayData = dayData;
         this.placeData = placeData;
         this.moneyData = moneyData;
-        this.imgBill= imgBill;
+        this.path= path;
         this.timeData=timeData;
     }
 
@@ -46,12 +46,21 @@ public class Page1_item {
         this.moneyData = moneyData;
     }
 
-    public String getImgBill() {
-        return imgBill;
+
+    public String getDayData() {
+        return dayData;
     }
 
-    public void setImgBill(String imgBill) {
-        this.imgBill = imgBill;
+    public void setDayData(String dayData) {
+        this.dayData = dayData;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getTimeData() {

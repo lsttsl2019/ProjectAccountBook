@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.isttis2019.projectaccountbook.databinding.FragmentPage1Binding;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -55,6 +56,7 @@ public class Page1Fragment extends Fragment {
     Button  btnDay;
     EditText edPlace;
     EditText edMoney;
+    TextView result;
 
     ImageView imgBill;
     ImageView imgbtnAddBill;
@@ -70,6 +72,7 @@ public class Page1Fragment extends Fragment {
 
     ///////////////////////////데이터를 관리하고 리스트 뷰에 보일녀석들
     ArrayList<Page1_item> page1Items=new ArrayList<>();
+
     ListView listView;
     Page1_ListView_Adapter listViewAdapter;
     String path;
@@ -95,6 +98,8 @@ public class Page1Fragment extends Fragment {
         ed=view.findViewById(R.id.ed_expenditure);
         tvsave=view.findViewById(R.id.tv_Save);
         ivAdd=view.findViewById(R.id.iv_add);
+        result=view.findViewById(R.id.tv_result);
+
         calendar=Calendar.getInstance();
         listView=view.findViewById(R.id.page01_listview);
         listViewAdapter=new Page1_ListView_Adapter(page1Items,getContext());
@@ -179,8 +184,20 @@ public class Page1Fragment extends Fragment {
                                 SimpleDateFormat sdfform=new SimpleDateFormat("HH:mm:ss");
                                 dateTime=sdfform.format(date);
 
+                                int moneyAdd=Integer.parseInt(money);
+                                int moneyAdd2=0;
+                                moneyAdd2+=moneyAdd;
 
-                            page1Items.add(0,new Page1_item(day, place, dateTime,money, path));
+
+                                result.setText(moneyAdd2+"");
+
+                                page1Items.add(0,new Page1_item(day, place, dateTime,money, path));
+
+
+
+
+
+
 
                             listViewAdapter.notifyDataSetChanged();
 
@@ -205,9 +222,6 @@ public class Page1Fragment extends Fragment {
 
 
 
-
-
-
                     btnDay.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -219,7 +233,7 @@ public class Page1Fragment extends Fragment {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                                        day_year_month_day=(year+"")+(month+1)+dayOfMonth+"";
-                                       tvDay.setText(day_year_month_day);
+                                    tvDay.setText(day_year_month_day);
                                 }
                             };
                             DatePickerDialog dialog=new DatePickerDialog(getActivity(),dateSetListener,cyear,cmonth,cday);
@@ -260,9 +274,8 @@ public class Page1Fragment extends Fragment {
             if (resultCode==RESULT_OK){
                 Uri uri= data.getData();
                path=uri.toString();
-                if (uri!=null){
-                    Glide.with(getActivity()).load(uri).into(imgBill);
-
+                if (uri!=null) {
+                    Picasso.with(getContext()).load(uri).into(imgBill);
                 }
             }
             break;

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class Page1_ListView_Adapter extends BaseAdapter {
 
 
 
-    MainActivity activity;
+
     ArrayList<Page1_item> page1Items;
     LayoutInflater inflater;
     Context context;
@@ -61,8 +62,18 @@ public class Page1_ListView_Adapter extends BaseAdapter {
 
        Page1_item page1Item=page1Items.get(position);
 
-        Uri uri=Uri.parse(page1Item.imgBill);
-       Glide.with(context).load(uri).into(imgbill);
+        Uri uri=Uri.parse(page1Item.path);
+        if (uri!=null){
+            Picasso.with(context).load(uri).into(imgbill);
+        }else {
+            Picasso.with(context).load(page1Item.path).into(imgbill);
+
+        }
+
+
+
+
+
        tvday.setText(page1Item.dayData);
        tvtime.setText(page1Item.timeData);
        tvpalce.setText(page1Item.placeData);
