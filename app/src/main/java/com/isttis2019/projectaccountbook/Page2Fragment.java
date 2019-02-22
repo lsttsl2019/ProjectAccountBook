@@ -14,28 +14,36 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Page2Fragment extends Fragment {
 
 
     TextView tvMoneyAdd;
+    int mnresult;
+
     ImageView lvadd;
 
     ListView listView;
+    Page2_ListView_Adapter page2ListViewAdapter;
+    ArrayList<Page2_item> page2Items=new ArrayList<>();
     /////////////////////////////////////
     Spinner spinner;
     TextView tvdate;
-    TextView tvMoney;
+    EditText tvMoney;
     Button btndate;
     String[] spinnerdata;
-    String spinnerAdd;
+
 
     /////////////////////////다이얼로그
   Calendar calendar;
@@ -45,7 +53,10 @@ public class Page2Fragment extends Fragment {
 
    String day_year_month_day;
     ////////////////////////날짜 와 시간
-
+    String time;
+    String data;
+    String money;
+    String item;
 
     @Nullable
     @Override
@@ -55,6 +66,9 @@ public class Page2Fragment extends Fragment {
         tvMoneyAdd=view.findViewById(R.id.fg2_tv_result);
         lvadd=view.findViewById(R.id.fg2_btn_addLsitview);
         calendar=Calendar.getInstance();
+        listView=view.findViewById(R.id.fg2_listview);
+        page2ListViewAdapter= new Page2_ListView_Adapter(page2Items, getContext());
+        listView.setAdapter(page2ListViewAdapter);
 
 
         return view;
@@ -65,18 +79,6 @@ public class Page2Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-//        spinnerdata=getResources().getStringArray(R.array.income);
-//      ArrayAdapter arrayAdapter=ArrayAdapter.createFromResource(getContext(),R.array.income,android.R.layout.simple_spinner_item);
-//        Toast.makeText(getContext(), ""+arrayAdapter, Toast.LENGTH_SHORT).show();
-        //arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spinner.setAdapter(arrayAdapter);
-        //spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(getContext(), Integer.toString(position), Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
 
         lvadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +96,21 @@ public class Page2Fragment extends Fragment {
                 final ArrayAdapter arrayAdapter=ArrayAdapter.createFromResource(getContext(),R.array.income,android.R.layout.simple_spinner_item);
                 spinner.setAdapter(arrayAdapter);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerdata=getResources().getStringArray(R.array.income);
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Toast.makeText(getContext(), spinnerdata[position], Toast.LENGTH_SHORT).show();
+                        item=spinnerdata[position];
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+
+                    }
+                });
+
 
 
 
@@ -102,10 +119,39 @@ public class Page2Fragment extends Fragment {
                 builder.setPositiveButton("저장", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if (tvMoney.getText().toString().equals("")){
+                            dialog.cancel();
+                            Toast.makeText(getContext(), "금액을 입력해주세요", Toast.LENGTH_SHORT).show();
+                        }else {
 
+
+                        long now= System.currentTimeMillis();
+                        Date date=new Date(now);
+                        SimpleDateFormat sdfform=new SimpleDateFormat("HH:mm:ss");
+                        time=sdfform.format(date);
+                        /////////////////////////////////시간
+                        money=tvMoney.getText().toString();
+                        int moneyadd=Integer.parseInt(money);
+
+                        mnresult=mnresult+moneyadd;
+                        tvMoneyAdd.setText(mnresult+"");
+                        ////누적시킨하루 금액
+                        data=day_year_month_day;
+                        ///날자저장
+                        if (data==null){
+                            cyear= calendar.get(Calendar.YEAR);
+                            cmonth=calendar.get(Calendar.MONDAY);
+                            cday=calendar.get(Calendar.DAY_OF_MONTH);
+                           data=cyear+""+(cmonth+1)+""+cday+"";
+                        }
+                        page2Items.add(new Page2_item(data,time,item,money));
+                        page2ListViewAdapter.notifyDataSetChanged();
+                        Toast.makeText(getContext(), "저장되었습니다", Toast.LENGTH_SHORT).show();
+                    }
 
                     }
                 });
+
                 builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
