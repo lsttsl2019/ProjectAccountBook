@@ -74,17 +74,17 @@ public class Page1_ListView_Adapter extends BaseAdapter {
        }
 
 
-        int cyea=page1Item.calendar.get(Calendar.YEAR);
-        int cmonth=page1Item.calendar.get(Calendar.MONDAY);
-        int cday=page1Item.calendar.get(Calendar.DAY_OF_MONTH);
+                    int cyea=page1Item.calendar.get(Calendar.YEAR);
+                    int cmonth=page1Item.calendar.get(Calendar.MONDAY);
+                    int cday=page1Item.calendar.get(Calendar.DAY_OF_MONTH);
 
 
 
 
-       tvday.setText(cyea+""+(cmonth+1)+""+cday);
-       tvtime.setText(page1Item.timeData);
-       tvpalce.setText(page1Item.placeData);
-       tvmoney.setText(page1Item.moneyData);
+                    tvday.setText(cyea+""+(cmonth+1)+""+cday);
+                    tvtime.setText(page1Item.timeData);
+                    tvpalce.setText(page1Item.placeData);
+                        tvmoney.setText(page1Item.moneyData);
 
 
 

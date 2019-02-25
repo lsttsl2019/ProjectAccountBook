@@ -19,6 +19,7 @@ public class Page3Fragment extends Fragment {
     CalendarView calendarView;
     ArrayList<EventDay>  days=new ArrayList<>();
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
