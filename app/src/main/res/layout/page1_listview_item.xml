@@ -6,11 +6,14 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
+
+    <!--android:src="@drawable/mainlogo"-->
    <ImageView
        android:id="@+id/listview_img"
        android:layout_width="60dp"
        android:layout_height="60dp"
-       android:src="@drawable/mainlogo"
+       android:src="@drawable/img_back01"
+
        android:paddingRight="8dp"/>
     <LinearLayout
         android:orientation="horizontal"

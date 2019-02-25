@@ -1,18 +1,20 @@
 package com.isttis2019.projectaccountbook;
 
+import java.util.Calendar;
+
 public class Page2_item {
 
-        String data;
+       Calendar calendar;
         String time;
         String item;
         String money;
 
-    public String getData() {
-        return data;
+    public Calendar getCalendar() {
+        return calendar;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 
     public String getTime() {
@@ -39,8 +41,8 @@ public class Page2_item {
         this.money = money;
     }
 
-    public Page2_item(String data, String time, String item, String money) {
-        this.data = data;
+    public Page2_item(Calendar calendar, String time, String item, String money) {
+        this.calendar=calendar;
         this.time = time;
         this.item = item;
         this.money = money;

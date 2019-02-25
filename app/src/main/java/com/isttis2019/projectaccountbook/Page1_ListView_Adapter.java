@@ -66,11 +66,9 @@ public class Page1_ListView_Adapter extends BaseAdapter {
        Page1_item page1Item=page1Items.get(position);
 
        if (uri!=null){
-           uri=Uri.parse(page1Item.path);
+           uri=Uri.parse(page1Item.getPath());
 
            Picasso.with(context).load(uri).into(imgbill);
-
-
        }
 
 

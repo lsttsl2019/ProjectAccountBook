@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Page2_ListView_Adapter extends BaseAdapter {
 
@@ -57,7 +58,14 @@ public class Page2_ListView_Adapter extends BaseAdapter {
 
         Page2_item page2Item=page2Items.get(position);
 
-        tvdata.setText(page2Item.data);
+
+        int cyea=page2Item.calendar.get(Calendar.YEAR);
+        int cmonth=page2Item.calendar.get(Calendar.MONDAY);
+        int cday=page2Item.calendar.get(Calendar.DAY_OF_MONTH);
+
+
+
+        tvdata.setText(cyea+""+(cmonth+1)+""+cday);
         tvItem.setText(page2Item.item);
         tvTime.setText(page2Item.time);
         tvMoney.setText(page2Item.money);

@@ -57,7 +57,7 @@ public class Page2Fragment extends Fragment {
     String data;
     String money;
     String item;
-
+      Calendar calendarAdd;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class Page2Fragment extends Fragment {
         listView=view.findViewById(R.id.fg2_listview);
         page2ListViewAdapter= new Page2_ListView_Adapter(page2Items, getContext());
         listView.setAdapter(page2ListViewAdapter);
+
 
 
         return view;
@@ -144,7 +145,7 @@ public class Page2Fragment extends Fragment {
                             cday=calendar.get(Calendar.DAY_OF_MONTH);
                            data=cyear+""+(cmonth+1)+""+cday+"";
                         }
-                        page2Items.add(new Page2_item(data,time,item,money));
+                        page2Items.add(new Page2_item(calendarAdd,time,item,money));
                         page2ListViewAdapter.notifyDataSetChanged();
                         Toast.makeText(getContext(), "저장되었습니다", Toast.LENGTH_SHORT).show();
                     }
@@ -167,6 +168,7 @@ public class Page2Fragment extends Fragment {
                         cmonth=calendar.get(Calendar.MONDAY);
                         cday=calendar.get(Calendar.DAY_OF_MONTH);
 
+                        calendarAdd= Calendar.getInstance();
                         DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

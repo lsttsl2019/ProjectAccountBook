@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,12 +31,16 @@ public class MainActivity extends AppCompatActivity {
   NavigationView navigationView;
   ActionBarDrawerToggle drawerToggle;
 
-  ArrayList<Page1_item> items = new ArrayList<>();
+
+  ArrayList<Page1_item> itemsPage1 = new ArrayList<>();
+  ArrayList<Page2_item> itemsPage2= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
         if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
@@ -65,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
      tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
@@ -91,11 +98,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void addItem(Page1_item item){
-        items.add(item);
+        itemsPage1.add(item);
+
     }
 
     public ArrayList<Page1_item> getItems(){
-        return items;
+        return itemsPage1;
+    }
+
+    public ArrayList<Page1_item> getItemsPage1() {
+        return itemsPage1;
+    }
+
+    public void setItemsPage1(ArrayList<Page1_item> itemsPage1) {
+        this.itemsPage1 = itemsPage1;
+    }
+
+    public ArrayList<Page2_item> getItemsPage2() {
+        return itemsPage2;
+    }
+
+    public void setItemsPage2(ArrayList<Page2_item> itemsPage2) {
+        this.itemsPage2 = itemsPage2;
     }
 
     @Override

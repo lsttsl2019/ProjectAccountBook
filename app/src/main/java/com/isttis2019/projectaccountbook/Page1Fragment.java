@@ -91,6 +91,7 @@ public class Page1Fragment extends Fragment {
 
     Calendar calendarAdd;
 
+    MainActivity mainActivity;
 
     @Nullable
     @Override
@@ -98,6 +99,7 @@ public class Page1Fragment extends Fragment {
         final View view=inflater.inflate(R.layout.fragment_page1, container,false);
 
 
+        mainActivity = (MainActivity) getActivity();
 
         b = DataBindingUtil.inflate(inflater, R.layout.fragment_page1, container, false);
 
@@ -200,9 +202,10 @@ public class Page1Fragment extends Fragment {
                                 /////////////////////////////////////////////////작업한내용물외부 서버에 보내기
 
 
+                                Page1_item item = new Page1_item(calendar, place, dateTime,money, path);
 
-                                page1Items.add(0,new Page1_item(calendarAdd, place, dateTime,money, path));
-
+                                page1Items.add(item);
+                                mainActivity.addItem(item);
 
 
                             listViewAdapter.notifyDataSetChanged();
@@ -231,11 +234,12 @@ public class Page1Fragment extends Fragment {
                     btnDay.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            cyear= calendar.get(Calendar.YEAR);
+                            calendar = Calendar.getInstance();
+                                    cyear= calendar.get(Calendar.YEAR);
                             cmonth=calendar.get(Calendar.MONDAY);
                             cday=calendar.get(Calendar.DAY_OF_MONTH);
 
-                               calendarAdd=calendar;
+
                             final DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
