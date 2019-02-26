@@ -1,8 +1,6 @@
 package com.isttis2019.projectaccountbook;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -22,13 +19,13 @@ public class Page1_ListView_Adapter extends BaseAdapter {
 
 
 
-    ArrayList<Page1_item> page1Items;
+    ArrayList<Page1Item> page1Items;
     LayoutInflater inflater;
     Context context;
     Uri uri;
 
 
-    public Page1_ListView_Adapter(ArrayList<Page1_item> page1Items, Context context) {
+    public Page1_ListView_Adapter(ArrayList<Page1Item> page1Items, Context context) {
         this.page1Items = page1Items;
         this.inflater = LayoutInflater.from(context);
         this.context = context;
@@ -63,13 +60,15 @@ public class Page1_ListView_Adapter extends BaseAdapter {
         TextView tvmoney= convertView.findViewById(R.id.listview_money);
 
 
-       Page1_item page1Item=page1Items.get(position);
+       Page1Item page1Item=page1Items.get(position);
 
        if (uri!=null){
            uri=Uri.parse(page1Item.getPath());
 
            Picasso.with(context).load(uri).into(imgbill);
+
        }
+
 
 
         int cyea=page1Item.calendar.get(Calendar.YEAR);

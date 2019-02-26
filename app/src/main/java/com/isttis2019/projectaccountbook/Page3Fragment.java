@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,26 +29,16 @@ public class Page3Fragment extends Fragment {
        View view=inflater.inflate(R.layout.fragment_page3, container,false);
         calendarView=view.findViewById(R.id.fg3_meter_calendar);
         mainActivity = (MainActivity) getActivity();
-        ArrayList<Page1_item>  items = mainActivity.getItemsPage1();
-
-
-
+        ArrayList<Page1Item>  items = mainActivity.getItemsPage1();
 
         if (tmp!=null){
-            for (Page1_item t : items){
+            for (Page1Item t : items){
                 tmp.add(t.getCalendar());
-                for (int i=0; i<items.size(); i++){
+                for (int i=0; i<=items.size(); i++){
                     days.add(new EventDay(tmp.get(i),R.drawable.ic_dot));
                 }
 
             }
-
-
-
-
-
-
-
 
             calendarView.setEvents(days);
 

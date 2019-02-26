@@ -1,23 +1,15 @@
 package com.isttis2019.projectaccountbook;
 
-import android.Manifest;
 import android.app.DatePickerDialog;
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -31,11 +23,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.isttis2019.projectaccountbook.databinding.FragmentPage1Binding;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,8 +33,6 @@ import java.util.Date;
 import static android.app.Activity.RESULT_OK;
 
 public class Page1Fragment extends Fragment {
-
-    FragmentPage1Binding b;
 
     TextView tvsave;
 
@@ -77,7 +64,7 @@ public class Page1Fragment extends Fragment {
     ///////////////////////////날짜
 
     ///////////////////////////데이터를 관리하고 리스트 뷰에 보일녀석들
-    ArrayList<Page1_item> page1Items=new ArrayList<>();
+    ArrayList<Page1Item> page1Items=new ArrayList<>();
 
     ListView listView;
     Page1_ListView_Adapter listViewAdapter;
@@ -89,7 +76,7 @@ public class Page1Fragment extends Fragment {
     String place;
     String money;
 
-    Calendar calendarAdd;
+
 
     MainActivity mainActivity;
 
@@ -101,15 +88,13 @@ public class Page1Fragment extends Fragment {
 
         mainActivity = (MainActivity) getActivity();
 
-        b = DataBindingUtil.inflate(inflater, R.layout.fragment_page1, container, false);
-
         btnSave=view.findViewById(R.id.btn_Save);
         ed=view.findViewById(R.id.ed_expenditure);
         tvsave=view.findViewById(R.id.tv_Save);
         ivAdd=view.findViewById(R.id.iv_add);
         result=view.findViewById(R.id.tv_result);
 
-        calendar=Calendar.getInstance();
+
         listView=view.findViewById(R.id.page01_listview);
         listViewAdapter=new Page1_ListView_Adapter(page1Items,getContext());
         listView.setAdapter(listViewAdapter);
@@ -124,10 +109,6 @@ public class Page1Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
-
 
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -150,7 +131,6 @@ public class Page1Fragment extends Fragment {
                         }
 
                     }
-
 
                 }
             });
@@ -202,7 +182,7 @@ public class Page1Fragment extends Fragment {
                                 /////////////////////////////////////////////////작업한내용물외부 서버에 보내기
 
 
-                                Page1_item item = new Page1_item(calendar, place, dateTime,money, path);
+                                Page1Item item = new Page1Item(calendar, place, dateTime,money, path);
 
                                 page1Items.add(item);
                                 mainActivity.addItem(item);
@@ -235,15 +215,18 @@ public class Page1Fragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             calendar = Calendar.getInstance();
-                                    cyear= calendar.get(Calendar.YEAR);
+
+                            cyear= calendar.get(Calendar.YEAR);
                             cmonth=calendar.get(Calendar.MONDAY);
                             cday=calendar.get(Calendar.DAY_OF_MONTH);
+
 
 
                             final DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                                        day_year_month_day=(year+"")+(month+1)+dayOfMonth+"";
+
                                     tvDay.setText(day_year_month_day);
                                 }
                             };
@@ -282,15 +265,10 @@ public class Page1Fragment extends Fragment {
             if (resultCode==RESULT_OK){
                 Uri uri= data.getData();
                 finalPath=getRealPathFromUri(uri); //절대경로얻어옴.
-               path=uri.toString();
-
+                path=uri.toString();
                     Picasso.with(getContext()).load(uri).into(imgBill);
-
             }
             break;
-
-
-
         }
 
     }

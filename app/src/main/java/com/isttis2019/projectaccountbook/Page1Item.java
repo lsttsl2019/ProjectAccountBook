@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import java.util.Calendar;
 
-public class Page1_item {
+public class Page1Item {
 
     Calendar calendar;
     String placeData;
@@ -14,12 +14,12 @@ public class Page1_item {
     String path;
 
 
-    public Page1_item(Calendar calendar, String placeData, String timeData, String moneyData, String path) {
-        this.calendar= calendar;
+    public Page1Item(Calendar calendar, String placeData, String timeData, String moneyData, String path) {
+        this.calendar = calendar;
         this.placeData = placeData;
+        this.timeData = timeData;
         this.moneyData = moneyData;
-        this.path= path;
-        this.timeData=timeData;
+        this.path = path;
     }
 
     public Calendar getCalendar() {
@@ -30,33 +30,12 @@ public class Page1_item {
         this.calendar = calendar;
     }
 
-
-
     public String getPlaceData() {
         return placeData;
     }
 
     public void setPlaceData(String placeData) {
         this.placeData = placeData;
-    }
-
-    public String getMoneyData() {
-        return moneyData;
-    }
-
-    public void setMoneyData(String moneyData) {
-        this.moneyData = moneyData;
-    }
-
-
-
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 
     public String getTimeData() {
@@ -67,5 +46,19 @@ public class Page1_item {
         this.timeData = timeData;
     }
 
+    public String getMoneyData() {
+        return moneyData;
+    }
 
+    public void setMoneyData(String moneyData) {
+        this.moneyData = moneyData;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

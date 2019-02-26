@@ -12,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
   ActionBarDrawerToggle drawerToggle;
 
 
-  ArrayList<Page1_item> itemsPage1 = new ArrayList<>();
+  ArrayList<Page1Item> itemsPage1 = new ArrayList<>();
   ArrayList<Page2_item> itemsPage2= new ArrayList<>();
 
     @Override
@@ -92,25 +91,22 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
     }//onCreate
 
 
-    public void addItem(Page1_item item){
+    public void addItem(Page1Item item){
         itemsPage1.add(item);
-
     }
 
-    public ArrayList<Page1_item> getItems(){
+    public ArrayList<Page1Item> getItems(){
         return itemsPage1;
     }
 
-    public ArrayList<Page1_item> getItemsPage1() {
+    public ArrayList<Page1Item> getItemsPage1() {
         return itemsPage1;
     }
 
-    public void setItemsPage1(ArrayList<Page1_item> itemsPage1) {
+    public void setItemsPage1(ArrayList<Page1Item> itemsPage1) {
         this.itemsPage1 = itemsPage1;
     }
 
@@ -121,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
     public void setItemsPage2(ArrayList<Page2_item> itemsPage2) {
         this.itemsPage2 = itemsPage2;
     }
+
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
