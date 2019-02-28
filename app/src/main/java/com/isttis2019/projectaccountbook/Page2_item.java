@@ -5,6 +5,7 @@ import java.util.Calendar;
 public class Page2_item {
 
        Calendar calendar;
+       String toDay;
         String time;
         String item;
         String money;
@@ -41,10 +42,19 @@ public class Page2_item {
         this.money = money;
     }
 
-    public Page2_item(Calendar calendar, String time, String item, String money) {
+    public Page2_item(Calendar calendar, String toDay,String time, String item, String money) {
         this.calendar=calendar;
+        this.toDay=toDay;
         this.time = time;
         this.item = item;
         this.money = money;
+    }
+
+    public String getToDay() {
+        return toDay;
+    }
+
+    public void setToDay(String toDay) {
+        this.toDay = toDay;
     }
 }

@@ -134,9 +134,10 @@ public class Page2Fragment extends Fragment {
                         money=tvMoney.getText().toString();
                         int moneyadd=Integer.parseInt(money);
 
-                        mnresult=mnresult+moneyadd;
+                        mnresult+=moneyadd;
                         tvMoneyAdd.setText(mnresult+"");
                         ////누적시킨하루 금액
+
                         data=day_year_month_day;
                         ///날자저장
                         if (data==null){
@@ -145,7 +146,15 @@ public class Page2Fragment extends Fragment {
                             cday=calendar.get(Calendar.DAY_OF_MONTH);
                            data=cyear+""+(cmonth+1)+""+cday+"";
                         }
-                        page2Items.add(new Page2_item(calendarAdd,time,item,money));
+
+                        Page2_item page2Item=new Page2_item(calendarAdd,day_year_month_day,time,item,money);
+                        page2Items.add(0,page2Item);
+                        MainActivity mainActivity= (MainActivity) getActivity();
+                        mainActivity.addItem2(page2Item);
+
+                        Page3Fragment page3Fragment = (Page3Fragment) getFragmentManager().getFragments().get(2);
+                            page3Fragment.getItemfg2(page2Item);
+
                         page2ListViewAdapter.notifyDataSetChanged();
                         Toast.makeText(getContext(), "저장되었습니다", Toast.LENGTH_SHORT).show();
                     }

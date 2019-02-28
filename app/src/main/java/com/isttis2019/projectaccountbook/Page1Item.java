@@ -1,7 +1,6 @@
 package com.isttis2019.projectaccountbook;
 
-import android.graphics.Bitmap;
-import android.widget.ImageView;
+import android.widget.DatePicker;
 
 import java.util.Calendar;
 
@@ -16,13 +15,14 @@ public class Page1Item {
 
 
 
-    public Page1Item(Calendar calendar, String toDay,String placeData, String timeData, String moneyData, String path) {
+    public Page1Item(Calendar calendar, String toDay, String placeData, String timeData, String moneyData, String path ) {
         this.calendar = calendar;
         this.toDay= toDay;
         this.placeData = placeData;
         this.timeData = timeData;
         this.moneyData = moneyData;
         this.path = path;
+
     }
 
     public Calendar getCalendar() {
@@ -32,6 +32,9 @@ public class Page1Item {
     public String getToDay() {
         return toDay;
     }
+
+
+
 
     public void setToDay(String toDay) {
         this.toDay = toDay;

@@ -61,6 +61,7 @@ public class Page1Fragment extends Fragment {
     int cmonth;
     int cday;
     String day_year_month_day;
+    DatePicker datePicker;
 
     ///////////////////////////날짜
 
@@ -196,6 +197,7 @@ public class Page1Fragment extends Fragment {
                                 mainActivity.addItem(item);
 
 
+
                             listViewAdapter.notifyDataSetChanged();
 
                         }
@@ -222,8 +224,8 @@ public class Page1Fragment extends Fragment {
                     btnDay.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            calendar = Calendar.getInstance();
 
+                            calendar = Calendar.getInstance();
                             cyear= calendar.get(Calendar.YEAR);
                             cmonth=calendar.get(Calendar.MONDAY);
                             cday=calendar.get(Calendar.DAY_OF_MONTH);
@@ -233,7 +235,24 @@ public class Page1Fragment extends Fragment {
                             final DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                       day_year_month_day=(year+"")+(month+1)+dayOfMonth+"";
+
+                                    day_year_month_day=(year+"")+(month+1)+dayOfMonth+"";
+
+                                 G.year=view.getYear()+"";
+
+                                 if (view.getDayOfMonth()>=10){
+                                     G.dayOfMonth=view.getDayOfMonth()+"";
+                                 }else {
+                                     G.dayOfMonth="0"+view.getDayOfMonth()+"";
+                                 }
+
+
+                                 if (view.getMonth()>=9){
+                                     G.month=(view.getMonth()+1)+"";
+                                 }else {
+                                     G.month="0"+(view.getMonth()+1)+"";
+                                 }
+
 
                                     tvDay.setText(day_year_month_day);
                                 }

@@ -59,13 +59,10 @@ public class Page2_ListView_Adapter extends BaseAdapter {
         Page2_item page2Item=page2Items.get(position);
 
 
-        int cyea=page2Item.calendar.get(Calendar.YEAR);
-        int cmonth=page2Item.calendar.get(Calendar.MONDAY);
-        int cday=page2Item.calendar.get(Calendar.DAY_OF_MONTH);
 
 
 
-        tvdata.setText(cyea+""+(cmonth+1)+""+cday);
+        tvdata.setText(page2Item.getToDay());
         tvItem.setText(page2Item.item);
         tvTime.setText(page2Item.time);
         tvMoney.setText(page2Item.money);

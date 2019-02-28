@@ -96,7 +96,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void addItem(Page1Item item){
         itemsPage1.add(item);
+
     }
+
+
 
     public ArrayList<Page1Item> getItems(){
         return itemsPage1;
@@ -110,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
         this.itemsPage1 = itemsPage1;
     }
 
+    public void addItem2(Page2_item item2){
+        itemsPage2.add(item2);
+    }
+    public ArrayList<Page2_item> getItem2s(){
+        return itemsPage2;
+    }
     public ArrayList<Page2_item> getItemsPage2() {
         return itemsPage2;
     }

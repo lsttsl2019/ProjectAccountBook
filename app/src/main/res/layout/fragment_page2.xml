@@ -22,7 +22,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="오늘 수입"
+              android:text="이번달 수입"
               android:textColor="@color/TextColor"
               android:textStyle="bold"
               android:textSize="24sp"
