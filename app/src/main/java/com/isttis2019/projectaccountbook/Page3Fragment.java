@@ -68,7 +68,7 @@ public class Page3Fragment extends Fragment {
 //        }
 //        Toast.makeText(mainActivity, tmp.size()+" : "+ items.size(), Toast.LENGTH_SHORT).show();
 
-        calendarView.setEvents(days);
+
 
 
         return view;
@@ -78,22 +78,40 @@ public class Page3Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        fg1.add(page1Item.get(0).getCalendar());
+//        fg1.add(page1Item.get(0).getCalendar());
+//
+//        String str= page1Item.get(0).getToDay();
+//        Toast.makeText(getContext(), ""+str, Toast.LENGTH_SHORT).show();
+//        SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMdd");
+//        try {
+//            Date date=sdf.parse(str);
+//           fg1.get(0).setTime(date);
+//            days.add(new EventDay(fg1.get(0),R.drawable.ic_dot));
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            Toast.makeText(getContext(), "false", Toast.LENGTH_SHORT).show();
+//        }
 
-        String str= G.year+G.month+G.dayOfMonth;
-        Toast.makeText(getContext(), ""+str, Toast.LENGTH_SHORT).show();
-        SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMdd");
-        try {
-            Date date=sdf.parse(str);
-           fg1.get(0).setTime(date);
-            days.add(new EventDay(fg1.get(0),R.drawable.ic_dot));
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-            Toast.makeText(getContext(), "false", Toast.LENGTH_SHORT).show();
+        for (Page1Item t: page1Item){
+            fg1.add(t.getCalendar());
         }
 
+        for (int i=0; i<page1Item.size(); i++){
 
+            String toDay=page1Item.get(i).toDay;
+            SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMdd");
+            try {
+                Date date=sdf.parse(toDay);
+                fg1.get(i).setTime(date);
+                days.add(new EventDay(fg1.get(i),R.drawable.ic_dot));
+            } catch (ParseException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), ""+days.size(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        calendarView.setEvents(days);
 
 
 

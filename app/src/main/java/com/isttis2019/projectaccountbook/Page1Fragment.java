@@ -253,6 +253,7 @@ public class Page1Fragment extends Fragment {
                                      G.month="0"+(view.getMonth()+1)+"";
                                  }
 
+                                    day_year_month_day=G.year+G.month+G.dayOfMonth;
 
                                     tvDay.setText(day_year_month_day);
                                 }
