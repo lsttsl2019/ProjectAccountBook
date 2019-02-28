@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -75,9 +76,9 @@ public class Page1Fragment extends Fragment {
     String day;
     String place;
     String money;
+    Uri uri;
 
-
-
+    int moneyAdd2;
     MainActivity mainActivity;
 
     @Nullable
@@ -143,6 +144,8 @@ public class Page1Fragment extends Fragment {
                     AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
                     builder.setTitle("지출내역 추가");
 
+
+
                     LayoutInflater inflater= getLayoutInflater();
                     View layout =inflater.inflate(R.layout.dialog_fragment1,null);
 
@@ -155,6 +158,11 @@ public class Page1Fragment extends Fragment {
 
                     //다이얼로그 추가 버튼과 취소번튼!!
                     builder.setView(layout);
+                    builder.setCancelable(true);
+                    uri =null;
+                    path=null;
+
+
                     builder.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -174,7 +182,7 @@ public class Page1Fragment extends Fragment {
                                 dateTime=sdfform.format(date);
 
                                 int moneyAdd=Integer.parseInt(money);
-                                int moneyAdd2=0;
+
                                 moneyAdd2+=moneyAdd;
 
 
@@ -182,7 +190,7 @@ public class Page1Fragment extends Fragment {
                                 /////////////////////////////////////////////////작업한내용물외부 서버에 보내기
 
 
-                                Page1Item item = new Page1Item(calendar, place, dateTime,money, path);
+                                Page1Item item = new Page1Item(calendar, day_year_month_day ,place, dateTime,money, path);
 
                                 page1Items.add(item);
                                 mainActivity.addItem(item);
@@ -237,18 +245,14 @@ public class Page1Fragment extends Fragment {
                         }
                     });//날짜 받아오는 버튼
 
-
                     imgbtnAddBill.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent intent= new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
                             startActivityForResult(intent,  PICK_IMAGE_REQUEST);
-
                         }
                     });
-
-
                 }
             });//Add리스너
 
@@ -260,31 +264,36 @@ public class Page1Fragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case PICK_IMAGE_REQUEST:
-            if (resultCode==RESULT_OK){
-                Uri uri= data.getData();
-                finalPath=getRealPathFromUri(uri); //절대경로얻어옴.
-                path=uri.toString();
-                    Picasso.with(getContext()).load(uri).into(imgBill);
-            }
-            break;
+                if (resultCode == RESULT_OK) {
+                   uri=data.getData();
+//                finalPath=getRealPathFromUri(uri); //절대경로얻어옴.
+                    path = uri.toString();
+//                    Picasso.with(getContext()).load(uri).into(imgBill);
+                    if (uri != null) {
+                        Glide.with(getContext()).load(uri).into(imgBill);
+                    } else {
+                        Picasso.with(getContext()).load(R.drawable.img_back01).into(imgBill);
+                    }
+
+                    break;
+                }
+
         }
+        ///////////////절대경로
+//       String getRealPathFromUri(Uri uri){
+//       String[] proj= {MediaStore.Images.Media.DATA};
+//        CursorLoader loader= new CursorLoader(getContext(), uri, proj, null, null, null);
+//        Cursor cursor= loader.loadInBackground();
+//        int column_index= cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//        cursor.moveToFirst();
+//        String result= cursor.getString(column_index);
+//        cursor.close();
+//        return  result;
+//    }
 
     }
-    ///////////////절대경로
-       String getRealPathFromUri(Uri uri){
-       String[] proj= {MediaStore.Images.Media.DATA};
-        CursorLoader loader= new CursorLoader(getContext(), uri, proj, null, null, null);
-        Cursor cursor= loader.loadInBackground();
-        int column_index= cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String result= cursor.getString(column_index);
-        cursor.close();
-        return  result;
-    }
-
-
 }
 
 

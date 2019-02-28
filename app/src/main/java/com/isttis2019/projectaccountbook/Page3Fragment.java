@@ -34,9 +34,9 @@ public class Page3Fragment extends Fragment {
         if (tmp!=null){
             for (Page1Item t : items){
                 tmp.add(t.getCalendar());
-                for (int i=0; i<=items.size(); i++){
-                    days.add(new EventDay(tmp.get(i),R.drawable.ic_dot));
-                }
+//                for (int i=0; i<=items.size(); i++){
+//                    days.add(new EventDay(tmp.get(i),R.drawable.ic_dot));
+//                }
 
             }
 

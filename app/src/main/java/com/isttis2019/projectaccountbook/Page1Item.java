@@ -8,14 +8,17 @@ import java.util.Calendar;
 public class Page1Item {
 
     Calendar calendar;
+    String toDay;
     String placeData;
     String timeData;
     String moneyData;
     String path;
 
 
-    public Page1Item(Calendar calendar, String placeData, String timeData, String moneyData, String path) {
+
+    public Page1Item(Calendar calendar, String toDay,String placeData, String timeData, String moneyData, String path) {
         this.calendar = calendar;
+        this.toDay= toDay;
         this.placeData = placeData;
         this.timeData = timeData;
         this.moneyData = moneyData;
@@ -24,6 +27,14 @@ public class Page1Item {
 
     public Calendar getCalendar() {
         return calendar;
+    }
+
+    public String getToDay() {
+        return toDay;
+    }
+
+    public void setToDay(String toDay) {
+        this.toDay = toDay;
     }
 
     public void setCalendar(Calendar calendar) {

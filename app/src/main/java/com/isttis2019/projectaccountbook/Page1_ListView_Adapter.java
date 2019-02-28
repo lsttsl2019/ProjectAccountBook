@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -62,23 +63,20 @@ public class Page1_ListView_Adapter extends BaseAdapter {
 
        Page1Item page1Item=page1Items.get(position);
 
-       if (uri!=null){
-           uri=Uri.parse(page1Item.getPath());
+        if (page1Item.path==null){
 
-           Picasso.with(context).load(uri).into(imgbill);
-
-       }
-
-
-
-        int cyea=page1Item.calendar.get(Calendar.YEAR);
-        int cmonth=page1Item.calendar.get(Calendar.MONDAY);
-        int cday=page1Item.calendar.get(Calendar.DAY_OF_MONTH);
+                Picasso.with(context).load(R.drawable.img_back01).into(imgbill);
+        }else {
+            uri=Uri.parse(page1Item.path);
+            Glide.with(context).load(uri).into(imgbill);
+        }
 
 
 
 
-       tvday.setText(cyea+""+(cmonth+1)+""+cday);
+
+
+       tvday.setText(page1Item.toDay);
        tvtime.setText(page1Item.timeData);
        tvpalce.setText(page1Item.placeData);
        tvmoney.setText(page1Item.moneyData);
