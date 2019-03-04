@@ -181,9 +181,20 @@ public class Page2Fragment extends Fragment {
                         DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-
                                 day_year_month_day=(year+"")+((month+1)+"")+dayOfMonth+"";
+
+                                G2.year=view.getYear()+"";
+                                if (view.getMonth()>=9){
+                                    G2.month=(view.getMonth()+1)+"";
+                                }else {
+                                    G2.month="0"+(view.getMonth()+1)+"";
+                                }
+                                if (view.getDayOfMonth()>=10){
+                                    G2.dayOfMonth=view.getDayOfMonth()+"";
+                                }else {
+                                    G2.dayOfMonth="0"+view.getDayOfMonth()+"";
+                                }
+                                day_year_month_day=G2.year+G2.month+G2.dayOfMonth;
 
                                 tvdate.setText(day_year_month_day);
                             }

@@ -101,10 +101,6 @@ public class Page1Fragment extends Fragment {
         listViewAdapter=new Page1_ListView_Adapter(page1Items,getContext());
         listView.setAdapter(listViewAdapter);
 
-
-
-
-
         return view;
     }
 
@@ -245,7 +241,6 @@ public class Page1Fragment extends Fragment {
                                  }else {
                                      G.dayOfMonth="0"+view.getDayOfMonth()+"";
                                  }
-
 
                                  if (view.getMonth()>=9){
                                      G.month=(view.getMonth()+1)+"";
