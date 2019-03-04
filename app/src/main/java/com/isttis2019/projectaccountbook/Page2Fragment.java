@@ -60,7 +60,7 @@ public class Page2Fragment extends Fragment {
       Calendar calendarAdd;
 
       MainActivity mainActivity;
-      Page3Fragment page3Fragment;
+    Page3Fragment page3Fragment;
 
       boolean isPless=true;
 
@@ -92,6 +92,7 @@ public class Page2Fragment extends Fragment {
             public void onClick(View v) {
                 final AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
                 builder.setTitle("수입내역 추가");
+
                 LayoutInflater inflater=getLayoutInflater();
                 View layout =inflater.inflate(R.layout.dialog_fragment2,null);
                 tvdate=layout.findViewById(R.id.fg2_dialog_day);
@@ -126,6 +127,8 @@ public class Page2Fragment extends Fragment {
                 builder.setPositiveButton("저장", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+
                         if (tvMoney.getText().toString().equals("")){
                             dialog.cancel();
                             Toast.makeText(getContext(), "금액을 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -160,13 +163,9 @@ public class Page2Fragment extends Fragment {
 
 
                         while (isPless){
-                            page3Fragment = (Page3Fragment) getFragmentManager().getFragments().get(2);
+                            page3Fragment=(Page3Fragment) getFragmentManager().getFragments().get(2); // 플래그먼트 추가
                             isPless=false;
-                        }
-
-
-
-
+                            }
                         page3Fragment.getItemfg2(page2Item);
 
 
@@ -240,7 +239,6 @@ public class Page2Fragment extends Fragment {
 
 
     }
-
 
 
 

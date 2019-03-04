@@ -236,7 +236,6 @@ public class Page1Fragment extends Fragment {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                                    day_year_month_day=(year+"")+(month+1)+dayOfMonth+"";
 
                                  G.year=view.getYear()+"";
 
