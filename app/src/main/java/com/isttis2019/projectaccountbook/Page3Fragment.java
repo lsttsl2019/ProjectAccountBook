@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,13 +28,19 @@ public class Page3Fragment extends Fragment {
     ArrayList<EventDay>  days=new ArrayList<>();
     ArrayList<Calendar> fg1=new ArrayList<Calendar>();
     ArrayList<Calendar> fg2=new ArrayList<>();
-
-
+    ArrayList<String>  fg1Today=new ArrayList<>();
+    ArrayList<String>  fg2Today=new ArrayList<>();
 
     MainActivity mainActivity;
     ArrayList<Page1Item> page1Item;
-    ArrayList<Page2_item> page2Item;
+    ArrayList<Page2_item> page2Item=new ArrayList<>();
 
+    String toDay;
+
+
+    ListView fg1ListView;
+    Fg3_ListView_Adapter fg3Adapter;
+    ArrayList<Fg3Page1Item> fg3Page1Item=new ArrayList<>();
 
     @Nullable
     @Override
@@ -38,128 +48,126 @@ public class Page3Fragment extends Fragment {
        View view=inflater.inflate(R.layout.fragment_page3, container,false);
         calendarView=view.findViewById(R.id.fg3_meter_calendar);
         mainActivity= (MainActivity) getActivity();
+        tvsleDay=view.findViewById(R.id.fg3_listView_fgtv_tv);
 
         page1Item =mainActivity.getItemsPage1();
 
-//        page2Item=mainActivity.getItemsPage2();
-//        Toast.makeText(mainActivity, ""+page2Item.size(), Toast.LENGTH_SHORT).show();
-
-//            page1Item=mainActivity.getItems();
-//            page2Item=mainActivity.getItem2s();
-
-
-
-//        mainActivity = (MainActivity) getActivity();
-
-
-//        if (tmp!=null){
-//            for (Page1Item t : items){
-//                tmp.add(t.getCalendar());
-//
-////                for (int i=0; i<=items.size(); i++){
-////                    days.add(new EventDay(tmp.get(i),R.drawable.ic_dot));
-////                }
-//
-//            }
-//
-//            days.add(new EventDay(tmp.get(0), R.drawable.ic_dot));
-//            calendarView.setEvents(days);
-
-//        }
-//        Toast.makeText(mainActivity, tmp.size()+" : "+ items.size(), Toast.LENGTH_SHORT).show();
-
-
+        fg1ListView=view.findViewById(R.id.fg3_listView_fg1);
+        fg3Adapter=new Fg3_ListView_Adapter(fg3Page1Item, getContext());
+        fg1ListView.setAdapter(fg3Adapter);
 
 
         return view;
     }
 
+    TextView tvsleDay;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        fg1.add(page1Item.get(0).getCalendar());
-//
-//        String str= page1Item.get(0).getToDay();
-//        Toast.makeText(getContext(), ""+str, Toast.LENGTH_SHORT).show();
-//        SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMdd");
-//        try {
-//            Date date=sdf.parse(str);
-//           fg1.get(0).setTime(date);
-//            days.add(new EventDay(fg1.get(0),R.drawable.ic_dot));
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//            Toast.makeText(getContext(), "false", Toast.LENGTH_SHORT).show();
-//        }
 
         for (Page1Item t: page1Item){
             fg1.add(t.getCalendar());
+            fg1Today.add(t.getToDay());
         }
 
-        for (int i=0; i<page1Item.size(); i++){
-
-            String toDay=page1Item.get(i).toDay;
-            SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMdd");
+        for (int i=0; i<fg1Today.size(); i++){
+                toDay=fg1Today.get(i);
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
             try {
                 Date date=sdf.parse(toDay);
                 fg1.get(i).setTime(date);
                 days.add(new EventDay(fg1.get(i),R.drawable.ic_dot));
             } catch (ParseException e) {
                 e.printStackTrace();
-                Toast.makeText(getContext(), ""+days.size(), Toast.LENGTH_SHORT).show();
             }
+
         }
 
-        calendarView.setEvents(days);
-
-
-
-
-
-
-
-
-
-//        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-//        String date=G.year+""+(G.month+1)+""+G.dayOfMonth;
-//        Calendar calendar=Calendar.getInstance();
-//        try {
-//            Date date1=sdf.parse(date);
-//            calendar.setTime(date1);
-//            days.add(new EventDay(calendar,R.drawable.ic_dot));
-//            calendarView.setEvents(days);
+//        if (page2Item != null){
+//            for (Page2_item t: page2Item){
+//                fg2.add(t.getCalendar());
+//                fg2Today.add(t.getToDay());
+//            }
 //
-//        } catch (ParseException e) {
-//            e.printStackTrace();
+////            for (int i=0; i<fg2Today.size(); i++){
+////                String stoDay=fg2Today.get(i);
+////                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+////                try {
+////                    Date date=sdf.parse(stoDay);
+////                    fg2.get(i).setTime(date);
+////                    days.add(new EventDay(fg2.get(i),R.drawable.ic_dot2));
+////                } catch (ParseException e) {
+////                    e.printStackTrace();
+////                }
+////            }
 //        }
 
 
 
-//        int year=fg1.get(i).getYear();
-//        int month=(fg1.get(i).getMonth()+1);
-//        int dayofMonth=fg1.get(i).getDayOfMonth();
-//        String dates=year+""+month+""+dayofMonth;
-//        Calendar calendar=Calendar.getInstance();
-//        calendar.set(year,month,dayofMonth);
-//
-//        days.add(new EventDay(calendar,R.drawable.ic_dot));
-//        calendarView.setEvents(days);
+        calendarView.setEvents(days);
+        if (fg1 !=null || fg2 !=null){
+            calendarView.setOnDayClickListener(new OnDayClickListener() {
+                @Override
+                public void onDayClick(EventDay eventDay) {
+                    Calendar calendar=eventDay.getCalendar();
+                    fg3Page1Item.clear();
+
+                    for (int i=0; i<page1Item.size(); i++){
+                        if (fg1.get(i)==calendar){
+                            tvsleDay.setText(page1Item.get(i).getToDay());
+                          fg3Page1Item.add(new Fg3Page1Item(page1Item.get(i).getPlaceData(),page1Item.get(i).getMoneyData()));
+                            fg3Adapter.notifyDataSetChanged();
+
+                        }
+                    }
+                }
+            });
+        }
+
 
 
     }
 
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        fg3Page1Item.clear();
+        fg3Adapter.notifyDataSetChanged();
+    }
 
     public void getItemfg2(Page2_item item){
         page2Item.add(item);
+        if (page2Item != null){
+            for (Page2_item t: page2Item){
+                fg2.add(t.getCalendar());
+                fg2Today.add(t.getToDay());
+            }
 
+            for (int i=0; i<fg2Today.size(); i++){
+                String stoDay=fg2Today.get(i);
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+                try {
+                    Date date=sdf.parse(stoDay);
+                    fg2.get(i).setTime(date);
+                    days.add(new EventDay(fg2.get(i),R.drawable.ic_dot2));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        }
+//        MainActivity mainActivity = (MainActivity) getActivity();
+//        mainActivity.fragmentsAdapter.notifyFrag3();
+
+        FragmentTransaction ft=getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
     }
 
 
 }
-
 
 
 

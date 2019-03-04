@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
     <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/fg3_meter_calendar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        >
     </com.applandeo.materialcalendarview.CalendarView>
 
-</RelativeLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="2">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="horizontal">
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               >
+               <TextView
+                   android:id="@+id/fg3_listView_fgtv_tv"
+                   android:layout_width="match_parent"
+                   android:layout_height="20dp"
+                   android:text="날짜"
+                   android:textSize="16sp"
+                   android:gravity="center"
+                   android:textColor="#000"
+                   android:textStyle="bold"/>
+               <ListView
+                   android:paddingLeft="4dp"
+                   android:paddingTop="4dp"
+                   android:id="@+id/fg3_listView_fg1"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+               </ListView>
+
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               >
+               <TextView
+                   android:id="@+id/fg3_listView_fg1_tv2"
+                   android:layout_width="match_parent"
+                   android:layout_height="20dp"
+                   android:text="날짜"
+                   android:textSize="16sp"
+                   android:gravity="center"
+                   android:textColor="#000"
+                   android:textStyle="bold"/>
+               <ListView
+                   android:paddingLeft="4dp"
+                   android:paddingTop="4dp"
+                   android:id="@+id/fg3_listView_fg2"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+               </ListView>
+
+
+           </LinearLayout>
+       </LinearLayout>
+
+
+   </LinearLayout>
+
+</LinearLayout>

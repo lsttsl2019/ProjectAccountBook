@@ -22,6 +22,18 @@ public class fragmentsAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+//        switch (position){
+//            case 0:
+//                return new Page1Fragment();
+//            case 1:
+//                return new Page2Fragment();
+//            case 2:
+//                return new Page3Fragment();
+//            case 3:
+//                return new Page4Fragment();
+//                default:
+//                    return null;
+//        }
         return fragments[position];
     }
 
@@ -31,9 +43,40 @@ public class fragmentsAdapter extends FragmentPagerAdapter {
     }
 
 
+
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
         return titles[position];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

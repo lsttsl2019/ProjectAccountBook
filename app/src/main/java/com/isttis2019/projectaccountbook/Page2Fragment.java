@@ -58,6 +58,12 @@ public class Page2Fragment extends Fragment {
     String money;
     String item;
       Calendar calendarAdd;
+
+      MainActivity mainActivity;
+    Page3Fragment page3Fragment;
+
+      boolean isPless=true;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +75,7 @@ public class Page2Fragment extends Fragment {
         listView=view.findViewById(R.id.fg2_listview);
         page2ListViewAdapter= new Page2_ListView_Adapter(page2Items, getContext());
         listView.setAdapter(page2ListViewAdapter);
-
+        mainActivity= (MainActivity) getActivity();
 
 
         return view;
@@ -86,6 +92,7 @@ public class Page2Fragment extends Fragment {
             public void onClick(View v) {
                 final AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
                 builder.setTitle("수입내역 추가");
+
                 LayoutInflater inflater=getLayoutInflater();
                 View layout =inflater.inflate(R.layout.dialog_fragment2,null);
                 tvdate=layout.findViewById(R.id.fg2_dialog_day);
@@ -120,6 +127,8 @@ public class Page2Fragment extends Fragment {
                 builder.setPositiveButton("저장", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+
                         if (tvMoney.getText().toString().equals("")){
                             dialog.cancel();
                             Toast.makeText(getContext(), "금액을 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -147,13 +156,19 @@ public class Page2Fragment extends Fragment {
                            data=cyear+""+(cmonth+1)+""+cday+"";
                         }
 
-                        Page2_item page2Item=new Page2_item(calendarAdd,day_year_month_day,time,item,money);
+                        Page2_item page2Item=new Page2_item(calendarAdd,day_year_month_day,time, item,money);
                         page2Items.add(0,page2Item);
-                        MainActivity mainActivity= (MainActivity) getActivity();
+
                         mainActivity.addItem2(page2Item);
 
-                        Page3Fragment page3Fragment = (Page3Fragment) getFragmentManager().getFragments().get(2);
-                            page3Fragment.getItemfg2(page2Item);
+
+                        while (isPless){
+                            page3Fragment=(Page3Fragment) getFragmentManager().getFragments().get(2); // 플래그먼트 추가
+                            isPless=false;
+                            }
+                        page3Fragment.getItemfg2(page2Item);
+
+
 
                         page2ListViewAdapter.notifyDataSetChanged();
                         Toast.makeText(getContext(), "저장되었습니다", Toast.LENGTH_SHORT).show();
@@ -185,6 +200,24 @@ public class Page2Fragment extends Fragment {
 
                                 day_year_month_day=(year+"")+((month+1)+"")+dayOfMonth+"";
 
+                                G.year=view.getYear()+"";
+
+                                if (view.getDayOfMonth()>=10){
+                                    G.dayOfMonth=view.getDayOfMonth()+"";
+                                }else {
+                                    G.dayOfMonth="0"+view.getDayOfMonth()+"";
+                                }
+
+
+                                if (view.getMonth()>=9){
+                                    G.month=(view.getMonth()+1)+"";
+                                }else {
+                                    G.month="0"+(view.getMonth()+1)+"";
+                                }
+
+                                day_year_month_day=G.year+G.month+G.dayOfMonth;
+
+
                                 tvdate.setText(day_year_month_day);
                             }
                         };
@@ -206,7 +239,6 @@ public class Page2Fragment extends Fragment {
 
 
     }
-
 
 
 

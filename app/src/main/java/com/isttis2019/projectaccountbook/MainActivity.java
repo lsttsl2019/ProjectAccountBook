@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -94,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
     }//onCreate
 
 
+
+
+
     public void addItem(Page1Item item){
         itemsPage1.add(item);
 
@@ -116,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     public void addItem2(Page2_item item2){
         itemsPage2.add(item2);
     }
+
     public ArrayList<Page2_item> getItem2s(){
         return itemsPage2;
     }

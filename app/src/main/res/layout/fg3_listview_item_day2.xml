@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+
+
+   <TextView
+       android:layout_width="0dp"
+       android:layout_weight="0.5"
+       android:layout_height="match_parent"
+       android:text="항목"
+       android:textStyle="bold"
+       android:textSize="16sp"
+       android:textColor="#000"
+       android:gravity="center"/>
+
+
+    <TextView
+        android:id="@+id/fg3_listItem2_tv"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="match_parent"
+        android:text="자동차비용"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:gravity="center"/>
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="match_parent"
+        android:text="금액"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:gravity="right"/>
+
+
+    <TextView
+        android:id="@+id/fg3_listItem2_tvMoney"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="10000000"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:gravity="center"/>
+
+
+
+
+</LinearLayout>
