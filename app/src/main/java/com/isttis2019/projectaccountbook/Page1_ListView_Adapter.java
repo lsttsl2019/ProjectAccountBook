@@ -1,8 +1,6 @@
 package com.isttis2019.projectaccountbook;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,20 +10,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Page1_ListView_Adapter extends BaseAdapter {
 
-    Context context;
 
 
-    ArrayList<Page1_item> page1Items;
+
+    ArrayList<Page1Item> page1Items;
     LayoutInflater inflater;
+    Context context;
+    Uri uri;
 
-    public Page1_ListView_Adapter(ArrayList<Page1_item> page1Items, LayoutInflater inflater, Context context) {
+
+    public Page1_ListView_Adapter(ArrayList<Page1Item> page1Items, Context context) {
         this.page1Items = page1Items;
-        this.inflater = inflater;
+        this.inflater = LayoutInflater.from(context);
         this.context = context;
     }
 
@@ -58,11 +61,22 @@ public class Page1_ListView_Adapter extends BaseAdapter {
         TextView tvmoney= convertView.findViewById(R.id.listview_money);
 
 
-       Page1_item page1Item=page1Items.get(position);
+       Page1Item page1Item=page1Items.get(position);
 
-        Uri uri=Uri.parse(page1Item.imgBill);
-       Glide.with(context).load(uri).into(imgbill);
-       tvday.setText(page1Item.dayData);
+        if (page1Item.path==null){
+
+                Picasso.with(context).load(R.drawable.img_back01).into(imgbill);
+        }else {
+            uri=Uri.parse(page1Item.path);
+            Glide.with(context).load(uri).into(imgbill);
+        }
+
+
+
+
+
+
+       tvday.setText(page1Item.toDay);
        tvtime.setText(page1Item.timeData);
        tvpalce.setText(page1Item.placeData);
        tvmoney.setText(page1Item.moneyData);

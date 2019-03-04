@@ -19,10 +19,11 @@
         android:layout_marginTop="12dp"
         />
     <TextView
-        android:id="@+id/ed_inputDay"
+        android:id="@+id/fg2_dialog_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="설정눌러 설정하세요"
+        android:text=""
+        android:hint="설정하세요"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="8dp"
         android:layout_toRightOf="@id/tv_day"
@@ -31,12 +32,10 @@
         android:textStyle="bold"/>
 
     <Button
-        android:id="@+id/dayBtn"
+        android:id="@+id/fg2_dialog_btnday"
         android:layout_width="26dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_toEndOf="@+id/ed_inputDay"
-        android:layout_toRightOf="@id/ed_inputDay"
+        android:layout_toRightOf="@id/fg2_dialog_day"
         android:background="#00ff0000"
         android:text="설정"
         android:textColor="#000"
@@ -49,7 +48,7 @@
         android:id="@+id/tv_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="항목 : "
+        android:text="장소 : "
         android:layout_marginBottom="4dp"
         android:textStyle="bold"
         android:textSize="16dp"
@@ -57,19 +56,14 @@
         android:layout_below="@id/tv_day"
         android:layout_marginLeft="16dp"/>
 
-    <EditText
-        android:id="@+id/ed_inputplace"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/fg2_dialog_spinner"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
-        android:textSize="14dp"
         android:layout_marginLeft="4dp"
-        android:layout_alignBaseline="@id/tv_place"
         android:layout_toRightOf="@id/tv_place"
-        android:hint="지출한 항목를 입력하세요"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:singleLine="true"
+        android:layout_marginTop="50dp"
+
         />
 
     <TextView
@@ -85,7 +79,7 @@
         android:textSize="16dp"/>
 
     <EditText
-        android:id="@+id/ed_money"
+        android:id="@+id/fg2_dialog_money"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_money"
@@ -102,39 +96,16 @@
         android:layout_height="wrap_content"
         android:text="원"
         android:layout_alignBaseline="@id/tv_money"
-        android:layout_toRightOf="@id/ed_money"
+        android:layout_toRightOf="@id/fg2_dialog_money"
         android:layout_marginTop="10dp"
         android:textSize="13dp"
         android:textStyle="bold"
         android:textColor="#000"
         />
 
-  <RelativeLayout
 
-      android:layout_width="230dp"
-      android:layout_height="160dp"
-      android:layout_below="@id/tv_money"
-      android:layout_marginLeft="24dp"
-      android:layout_marginTop="16dp"
-      >
 
-      <ImageView
-          android:layout_width="230dp"
-          android:layout_height="160dp"
-          android:src="@drawable/img_back01"
-          android:id="@+id/img_addbill"
-          />
 
-      <ImageView
-          android:id="@+id/btn_addbill"
-          android:layout_width="34dp"
-          android:layout_height="34dp"
-          android:src="@drawable/add_icon"
-          android:alpha="0.6"
-          android:layout_alignParentBottom="true"
-          android:layout_alignParentRight="true"
-          android:paddingRight="4dp"
-          android:paddingBottom="4dp"/>
 
 
 
@@ -146,4 +117,3 @@
 
 
 
-</RelativeLayout>

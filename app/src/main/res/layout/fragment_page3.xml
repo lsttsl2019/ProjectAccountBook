@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:text="page3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/fg3_meter_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.applandeo.materialcalendarview.CalendarView>
 
 </RelativeLayout>

@@ -4,24 +4,17 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    >
 
 
-    <!--android:src="@drawable/mainlogo"-->
-   <ImageView
-       android:id="@+id/listview_img"
-       android:layout_width="60dp"
-       android:layout_height="60dp"
-       android:src="@drawable/img_back01"
-
-       android:paddingRight="8dp"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp">
 
         <TextView
-            android:id="@+id/listview_day"
+            android:id="@+id/fg2_listview_day"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -32,7 +25,7 @@
             android:textColor="#000"/>
 
         <TextView
-            android:id="@+id/listview_time"
+            android:id="@+id/fg2_listview_time"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -42,7 +35,7 @@
             android:textStyle="bold"
             android:textColor="#000"/>
         <TextView
-            android:id="@+id/listview_place"
+            android:id="@+id/fg2_listview_income"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -52,7 +45,7 @@
             android:textStyle="bold"
             android:textColor="#000"/>
         <TextView
-            android:id="@+id/listview_money"
+            android:id="@+id/fg2_listview_money"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -61,6 +54,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +62,6 @@
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#000"/>
-
 
     </LinearLayout>
 

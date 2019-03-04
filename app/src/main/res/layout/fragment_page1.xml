@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
     <LinearLayout
 
         android:orientation="vertical"
@@ -12,7 +18,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#F77575">
+            android:background="#F77575"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <EditText
                 android:layout_width="150dp"
@@ -32,15 +40,15 @@
                 android:text="저장"
                 android:background="#00ff0000"
                 android:textSize="16sp"
-                android:layout_marginLeft="170dp"
+               android:layout_toRightOf="@id/tv_Save"
                 android:id="@+id/btn_Save"
                 android:textColor="#FFF"
                  />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:text="금액은얼마인가"
+                android:text="100000"
                 android:textSize="40dp"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"
@@ -51,10 +59,22 @@
                 />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="하루 지출 누적금액"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_below="@id/ed_expenditure"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="16dp"/>
+            <TextView
                 android:id="@+id/tv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10000"
+                android:text="0"
                 android:textStyle="bold"
                 android:textSize="40sp"
                 android:textColor="#FFF"
@@ -79,7 +99,7 @@
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="wrap_content"
-                   android:text="이미지"
+                   android:text="사진"
                    android:textStyle="bold"
                    android:gravity="center"
                    android:textSize="20sp"/>
@@ -103,7 +123,7 @@
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="wrap_content"
-                   android:text="장소"
+                   android:text="내역"
                    android:textSize="20sp"
                    android:gravity="center"/>
                <TextView
@@ -113,13 +133,7 @@
                    android:text="금액"
                    android:textSize="20sp"
                    android:gravity="center"/>
-               <ImageView
-                   android:clickable="true"
-                    android:id="@+id/iv_add"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:src="@drawable/ic_add_circle_outline_black_24dp"
-                   android:layout_gravity="center"/>
+
 
 
            </LinearLayout>
@@ -142,5 +156,15 @@
     </LinearLayout>
 
 
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/iv_add"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add_circle_outline_black_24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
 
 </layout>
