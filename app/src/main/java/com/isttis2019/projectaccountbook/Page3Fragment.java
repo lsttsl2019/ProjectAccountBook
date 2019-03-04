@@ -103,24 +103,28 @@ public class Page3Fragment extends Fragment {
 ////            }
 //        }
 
-
-
         calendarView.setEvents(days);
         if (fg1 !=null || fg2 !=null){
             calendarView.setOnDayClickListener(new OnDayClickListener() {
                 @Override
                 public void onDayClick(EventDay eventDay) {
                     Calendar calendar=eventDay.getCalendar();
+                    Date date=calendar.getTime();
+                    SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMdd");
+                    String str=sdf.format(date);
+
                     fg3Page1Item.clear();
 
                     for (int i=0; i<page1Item.size(); i++){
-                        if (fg1.get(i)==calendar){
+                        if (page1Item.get(i).toDay.equals(str)){
                             tvsleDay.setText(page1Item.get(i).getToDay());
                           fg3Page1Item.add(new Fg3Page1Item(page1Item.get(i).getPlaceData(),page1Item.get(i).getMoneyData()));
                             fg3Adapter.notifyDataSetChanged();
 
                         }
                     }
+
+
                 }
             });
         }

@@ -29,15 +29,28 @@
                android:layout_height="match_parent"
                android:orientation="vertical"
                >
-               <TextView
-                   android:id="@+id/fg3_listView_fgtv_tv"
+               <LinearLayout
                    android:layout_width="match_parent"
-                   android:layout_height="20dp"
-                   android:text="날짜"
-                   android:textSize="16sp"
-                   android:gravity="center"
-                   android:textColor="#000"
-                   android:textStyle="bold"/>
+                   android:layout_height="18dp"
+                   android:orientation="horizontal">
+                   <TextView
+                       android:gravity="right"
+                       android:layout_width="40dp"
+                       android:layout_height="match_parent"
+                       android:text="지출"
+                       android:textColor="#FC0202"
+                       android:textStyle="bold"/>
+                   <TextView
+                       android:id="@+id/fg3_listView_fgtv_tv"
+                       android:layout_width="match_parent"
+                       android:layout_height="20dp"
+                       android:text="날짜"
+                       android:textSize="16sp"
+                       android:gravity="center"
+                       android:textColor="#000"
+                       android:textStyle="bold"/>
+
+               </LinearLayout>
                <ListView
                    android:paddingLeft="4dp"
                    android:paddingTop="4dp"
@@ -56,15 +69,28 @@
                android:layout_height="match_parent"
                android:orientation="vertical"
                >
-               <TextView
-                   android:id="@+id/fg3_listView_fg1_tv2"
+               <LinearLayout
                    android:layout_width="match_parent"
-                   android:layout_height="20dp"
-                   android:text="날짜"
-                   android:textSize="16sp"
-                   android:gravity="center"
-                   android:textColor="#000"
-                   android:textStyle="bold"/>
+                   android:layout_height="18dp"
+                   android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:text="수입"
+                        android:textStyle="bold"
+                        android:textColor="#022BFA"
+                        android:gravity="right"/>
+                   <TextView
+                       android:id="@+id/fg3_listView_fg1_tv2"
+                       android:layout_width="match_parent"
+                       android:layout_height="20dp"
+                       android:text="날짜"
+                       android:textSize="16sp"
+                       android:gravity="center"
+                       android:textColor="#000"
+                       android:textStyle="bold"/>
+               </LinearLayout>
+
                <ListView
                    android:paddingLeft="4dp"
                    android:paddingTop="4dp"
