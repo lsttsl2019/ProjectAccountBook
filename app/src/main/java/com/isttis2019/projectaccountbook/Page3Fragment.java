@@ -42,6 +42,10 @@ public class Page3Fragment extends Fragment {
     Fg3_ListView_Adapter fg3Adapter;
     ArrayList<Fg3Page1Item> fg3Page1Item=new ArrayList<>();
 
+    ListView fg2ListView;
+   Fg3_ListView_Adapter2 fg3Adpter2;
+    ArrayList<Fg3Page2Item> fg3Page2Item=new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class Page3Fragment extends Fragment {
         calendarView=view.findViewById(R.id.fg3_meter_calendar);
         mainActivity= (MainActivity) getActivity();
         tvsleDay=view.findViewById(R.id.fg3_listView_fgtv_tv);
+        tvSleDay2=view.findViewById(R.id.fg3_listView_fg1_tv2);
 
         page1Item =mainActivity.getItemsPage1();
 
@@ -56,11 +61,15 @@ public class Page3Fragment extends Fragment {
         fg3Adapter=new Fg3_ListView_Adapter(fg3Page1Item, getContext());
         fg1ListView.setAdapter(fg3Adapter);
 
+        fg2ListView=view.findViewById(R.id.fg3_listView_fg2);
+        fg3Adpter2=new Fg3_ListView_Adapter2(fg3Page2Item,getContext());
+        fg2ListView.setAdapter(fg3Adpter2);
 
         return view;
     }
 
     TextView tvsleDay;
+    TextView tvSleDay2;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -84,24 +93,6 @@ public class Page3Fragment extends Fragment {
 
         }
 
-//        if (page2Item != null){
-//            for (Page2_item t: page2Item){
-//                fg2.add(t.getCalendar());
-//                fg2Today.add(t.getToDay());
-//            }
-//
-////            for (int i=0; i<fg2Today.size(); i++){
-////                String stoDay=fg2Today.get(i);
-////                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-////                try {
-////                    Date date=sdf.parse(stoDay);
-////                    fg2.get(i).setTime(date);
-////                    days.add(new EventDay(fg2.get(i),R.drawable.ic_dot2));
-////                } catch (ParseException e) {
-////                    e.printStackTrace();
-////                }
-////            }
-//        }
 
 
 
@@ -112,15 +103,29 @@ public class Page3Fragment extends Fragment {
                 public void onDayClick(EventDay eventDay) {
                     Calendar calendar=eventDay.getCalendar();
                     fg3Page1Item.clear();
+                    fg3Page2Item.clear();
+
+                    Date date=calendar.getTime();
+                    SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+                    String str=sdf.format(date);
 
                     for (int i=0; i<page1Item.size(); i++){
-                        if (fg1.get(i)==calendar){
+                        if (page1Item.get(i).toDay.equals(str)){
                             tvsleDay.setText(page1Item.get(i).getToDay());
                           fg3Page1Item.add(new Fg3Page1Item(page1Item.get(i).getPlaceData(),page1Item.get(i).getMoneyData()));
                             fg3Adapter.notifyDataSetChanged();
 
                         }
                     }
+                    for (int i=0; i<page2Item.size(); i++){
+                        if (page2Item.get(i).toDay.equals(str)){
+                            tvSleDay2.setText(page2Item.get(i).getToDay());
+                            fg3Page2Item.add(new Fg3Page2Item(page2Item.get(i).item,page2Item.get(i).money));
+                            fg3Adpter2.notifyDataSetChanged();
+                        }
+                    }
+
+
                 }
             });
         }
@@ -135,6 +140,8 @@ public class Page3Fragment extends Fragment {
         super.onResume();
         fg3Page1Item.clear();
         fg3Adapter.notifyDataSetChanged();
+        fg3Page2Item.clear();
+        fg3Adpter2.notifyDataSetChanged();
     }
 
     public void getItemfg2(Page2_item item){
