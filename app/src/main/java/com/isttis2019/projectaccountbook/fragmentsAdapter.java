@@ -18,6 +18,7 @@ public class fragmentsAdapter extends FragmentPagerAdapter {
         fragments[2]=new Page3Fragment();
         fragments[3]=new Page4Fragment();
 
+
     }
 
     @Override
