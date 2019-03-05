@@ -95,10 +95,10 @@ public class Page2Fragment extends Fragment {
 
                 LayoutInflater inflater=getLayoutInflater();
                 View layout =inflater.inflate(R.layout.dialog_fragment2,null);
-                tvdate=layout.findViewById(R.id.fg2_dialog_day);
-                btndate=layout.findViewById(R.id.fg2_dialog_btnday);
-                spinner=layout.findViewById(R.id.fg2_dialog_spinner);
-                tvMoney=layout.findViewById(R.id.fg2_dialog_money);
+                tvdate=layout.findViewById(R.id.fg2_dilog_Day);
+                btndate=layout.findViewById(R.id.fg2_dilog_dayBtn);
+                spinner=layout.findViewById(R.id.fg2_dilog_spinner);
+                tvMoney=layout.findViewById(R.id.fg2_dilog_money);
 
 
                 final ArrayAdapter arrayAdapter=ArrayAdapter.createFromResource(getContext(),R.array.income,android.R.layout.simple_spinner_item);

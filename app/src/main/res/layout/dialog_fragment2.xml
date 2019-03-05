@@ -57,19 +57,16 @@
         android:layout_below="@id/tv_day"
         android:layout_marginLeft="16dp"/>
 
-    <EditText
-        android:id="@+id/fg2_dilog_income"
-        android:layout_width="wrap_content"
+   <Spinner
+        android:id="@+id/fg2_dilog_spinner"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:textSize="14dp"
-        android:layout_marginLeft="4dp"
-        android:layout_alignBaseline="@id/tv_place"
-        android:layout_toRightOf="@id/tv_place"
-        android:hint="수입한 명을 입력하세요"
-        android:textColor="#000"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:singleLine="true"
+       android:layout_toRightOf="@id/tv_place"
+        android:layout_below="@id/tv_day"
+        android:layout_marginTop="10dp"
+       android:layout_marginLeft="16dp"
+
+
         />
 
     <TextView
