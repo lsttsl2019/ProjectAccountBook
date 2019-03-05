@@ -15,11 +15,14 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +51,8 @@ public class Page1Fragment extends Fragment {
     ////////다이얼로그
     TextView tvDay;
     Button  btnDay;
-    EditText edPlace;
+    Spinner spinnerPlace;
+    String[] spinnerArray;
     EditText edMoney;
     TextView result;
 
@@ -152,10 +156,28 @@ public class Page1Fragment extends Fragment {
 
                     tvDay=layout.findViewById(R.id.ed_inputDay);
                       btnDay=layout.findViewById(R.id.dayBtn);
-                    edPlace=layout.findViewById(R.id.ed_inputplace);
+                    spinnerPlace=layout.findViewById(R.id.spinner_dialog1);
                     edMoney=layout.findViewById(R.id.ed_money);
                     imgBill=layout.findViewById(R.id.img_addbill);
                     imgbtnAddBill=layout.findViewById(R.id.btn_addbill);
+
+                    ArrayAdapter arrayAdapter=ArrayAdapter.createFromResource(getContext(),R.array.incomesle,android.R.layout.simple_spinner_item);
+                    spinnerPlace.setAdapter(arrayAdapter);
+                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerArray=getResources().getStringArray(R.array.incomesle);
+                    spinnerPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            Toast.makeText(getContext(), spinnerArray[position], Toast.LENGTH_SHORT).show();
+                            place=spinnerArray[position];
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
 
                     //다이얼로그 추가 버튼과 취소번튼!!
                     builder.setView(layout);
@@ -174,7 +196,8 @@ public class Page1Fragment extends Fragment {
                         }else {
 
                           day= tvDay.getText().toString();
-                          place= edPlace.getText().toString();
+
+
                           money= edMoney.getText().toString();
 
                            long now= System.currentTimeMillis();
