@@ -65,6 +65,9 @@ public class Page3Fragment extends Fragment {
         fg3Adpter2=new Fg3_ListView_Adapter2(fg3Page2Item,getContext());
         fg2ListView.setAdapter(fg3Adpter2);
 
+        mainActivity.addCalendarView(calendarView);
+
+
         return view;
     }
 
@@ -92,7 +95,6 @@ public class Page3Fragment extends Fragment {
             }
 
         }
-
 
 
 

@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import com.applandeo.materialcalendarview.CalendarView;
+
 import java.util.ArrayList;
 
 
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
   ArrayList<Page1Item> itemsPage1 = new ArrayList<>();
   ArrayList<Page2_item> itemsPage2= new ArrayList<>();
+
+   CalendarView calendarViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,16 +98,16 @@ public class MainActivity extends AppCompatActivity {
 
     }//onCreate
 
+    public void addCalendarView(CalendarView calendarView){
+        calendarViews =calendarView;
+    }
 
 
-
-
+///////////////////////////////////////////날짜를 분류하기 위한 캘리더 뷰
     public void addItem(Page1Item item){
         itemsPage1.add(item);
 
     }
-
-
 
     public ArrayList<Page1Item> getItems(){
         return itemsPage1;
@@ -131,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
     public void setItemsPage2(ArrayList<Page2_item> itemsPage2) {
         this.itemsPage2 = itemsPage2;
     }
+
 
 
 
