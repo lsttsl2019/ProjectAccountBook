@@ -4,19 +4,18 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="wrap_content"
-    >
+    android:padding="8dp">
 
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="4dp">
+        android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/fg2_listview_day"
+            android:id="@+id/listview_fg2_day"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.6"
             android:layout_height="match_parent"
             android:text="201912315"
             android:gravity="center"
@@ -25,43 +24,37 @@
             android:textColor="#000"/>
 
         <TextView
-            android:id="@+id/fg2_listview_time"
+            android:id="@+id/listview_fg2_time"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.6"
             android:layout_height="match_parent"
             android:text="12:14"
             android:gravity="center"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000"/>
+
         <TextView
-            android:id="@+id/fg2_listview_income"
+            android:id="@+id/listview_fg2_money"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="김밥천국"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#000"/>
-        <TextView
-            android:id="@+id/fg2_listview_money"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:layout_height="match_parent"
             android:text="20000원"
             android:gravity="center"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000"/>
-
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="원"
-            android:textStyle="bold"
+            android:id="@+id/listview_fg2_income"
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="match_parent"
+            android:text="김밥천국"
+            android:gravity="center"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="#000"/>
+
 
     </LinearLayout>
 
