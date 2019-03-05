@@ -51,10 +51,10 @@ public class Page2_ListView_Adapter extends BaseAdapter {
             convertView=inflater.inflate(R.layout.page2_listview_item,null);
         }
 
-        TextView tvdata=convertView.findViewById(R.id.fg2_listview_day);
-        TextView tvTime=convertView.findViewById(R.id.fg2_listview_time);
-        TextView tvItem=convertView.findViewById(R.id.fg2_listview_income);
-        TextView tvMoney=convertView.findViewById(R.id.fg2_listview_money);
+        TextView tvdata=convertView.findViewById(R.id.item_day_listview);
+        TextView tvTime=convertView.findViewById(R.id.item_time_listview);
+        TextView tvItem=convertView.findViewById(R.id.item_income_listview);
+        TextView tvMoney=convertView.findViewById(R.id.item_money_listview);
 
         Page2_item page2Item=page2Items.get(position);
 

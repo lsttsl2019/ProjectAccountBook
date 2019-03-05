@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/listview_fg2_day"
+            android:id="@+id/item_day_listview"
             android:layout_width="0dp"
             android:layout_weight="0.6"
             android:layout_height="match_parent"
@@ -24,7 +24,7 @@
             android:textColor="#000"/>
 
         <TextView
-            android:id="@+id/listview_fg2_time"
+            android:id="@+id/item_time_listview"
             android:layout_width="0dp"
             android:layout_weight="0.6"
             android:layout_height="match_parent"
@@ -35,7 +35,7 @@
             android:textColor="#000"/>
 
         <TextView
-            android:id="@+id/listview_fg2_money"
+            android:id="@+id/item_money_listview"
             android:layout_width="0dp"
             android:layout_weight="0.8"
             android:layout_height="match_parent"
@@ -45,7 +45,7 @@
             android:textStyle="bold"
             android:textColor="#000"/>
         <TextView
-            android:id="@+id/listview_fg2_income"
+            android:id="@+id/item_income_listview"
             android:layout_width="0dp"
             android:layout_weight="0.8"
             android:layout_height="match_parent"
