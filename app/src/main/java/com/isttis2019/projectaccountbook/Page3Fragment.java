@@ -67,25 +67,14 @@ public class Page3Fragment extends Fragment {
 
         mainActivity.addCalendarView(calendarView);
 
-
-        return view;
-    }
-
-    TextView tvsleDay;
-    TextView tvSleDay2;
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
         for (Page1Item t: page1Item){
             fg1.add(t.getCalendar());
             fg1Today.add(t.getToDay());
         }
 
         for (int i=0; i<fg1Today.size(); i++){
-                toDay=fg1Today.get(i);
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+            toDay=fg1Today.get(i);
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
             try {
                 Date date=sdf.parse(toDay);
                 fg1.get(i).setTime(date);
@@ -99,6 +88,20 @@ public class Page3Fragment extends Fragment {
 
 
         calendarView.setEvents(days);
+
+
+
+
+        return view;
+    }
+
+    TextView tvsleDay;
+    TextView tvSleDay2;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
         if (fg1 !=null || fg2 !=null){
             calendarView.setOnDayClickListener(new OnDayClickListener() {
                 @Override
@@ -114,7 +117,7 @@ public class Page3Fragment extends Fragment {
                     for (int i=0; i<page1Item.size(); i++){
                         if (page1Item.get(i).toDay.equals(str)){
                             tvsleDay.setText(page1Item.get(i).getToDay());
-                          fg3Page1Item.add(new Fg3Page1Item(page1Item.get(i).getPlaceData(),page1Item.get(i).getMoneyData()));
+                            fg3Page1Item.add(new Fg3Page1Item(page1Item.get(i).getPlaceData(),page1Item.get(i).getMoneyData()));
                             fg3Adapter.notifyDataSetChanged();
 
                         }
@@ -133,17 +136,20 @@ public class Page3Fragment extends Fragment {
         }
 
 
-
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        fg3Page1Item.clear();
-        fg3Adapter.notifyDataSetChanged();
-        fg3Page2Item.clear();
-        fg3Adpter2.notifyDataSetChanged();
+
+        if (fg3Page1Item!=null || fg3Page2Item!=null){
+            fg3Page1Item.clear();
+            fg3Adapter.notifyDataSetChanged();
+            fg3Page2Item.clear();
+            fg3Adpter2.notifyDataSetChanged();
+        }
+
     }
 
     public void getItemfg2(Page2_item item){

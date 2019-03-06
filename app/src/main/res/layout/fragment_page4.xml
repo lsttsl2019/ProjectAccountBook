@@ -5,107 +5,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
-        <Button
-            android:id="@+id/wnBtn"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="주간"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            />
-
-        <Button
-            android:id="@+id/dnjfBtn"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="월간"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            />
-
-        <Button
-            android:id="@+id/susBtn"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:text="년간"
-        android:textStyle="bold"
-        android:textSize="24sp" />
-
-    </LinearLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="44dp"
         android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/fg4_Btn1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="#F80606"
+            android:text="지출"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:background="#00FF0000"/>
+        <Button
+            android:id="@+id/fg4_Btn2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="#072CFA"
+            android:text="수입"
+            android:background="#00FF0000"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
     </LinearLayout>
 
-    <RelativeLayout
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/BarChrt"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="지출"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="#FC0505"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
 
-            android:layout_height="wrap_content"
-            android:text="수입"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="#0127FA"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@id/bar_chart1"
-            android:layout_marginTop="40dp"
-            />
-
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/bar_chart1"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            >
-
-        </com.github.mikephil.charting.charts.PieChart>
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/bar_chart2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="60dp"
-            android:layout_below="@id/bar_chart1"
-            android:layout_marginLeft="100dp"
-
-            >
-
-
-        </com.github.mikephil.charting.charts.PieChart>
-
-    </RelativeLayout>
-
-
-
+    </com.github.mikephil.charting.charts.BarChart>
 
 
 
