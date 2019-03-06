@@ -2,6 +2,7 @@ package com.isttis2019.projectaccountbook;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,10 +10,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.applandeo.materialcalendarview.CalendarView;
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     toolbar=findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
+    toolbar.setTitleTextColor(Color.WHITE);
     viewPager=findViewById(R.id.viewPager);
     tabLayout=findViewById(R.id.layout_tab);
 
@@ -68,10 +71,36 @@ public class MainActivity extends AppCompatActivity {
         navigationView=findViewById(R.id.navigationView);
         navigationView.setItemIconTintList(null);
 
-        drawerToggle =new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name,R.string.app_name);
-        drawerLayout.addDrawerListener(drawerToggle);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.menu_aa:
+                        Toast.makeText(MainActivity.this, "aaa", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.menu_bb:
+                        Toast.makeText(MainActivity.this, "bbb", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                    drawerLayout.closeDrawer(navigationView,true);
+
+                return false;
+            }
+        });
+
+        //드로우어 조절용 토글버튼
+        drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.app_name,R.string.app_name);
+
+        //드러우어 토글버튼아이콘이 보이도록 액션바에게 요청
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //삼선아이콘 모양으로 보이도록 토글버튼의 동기 맞추기..!
         drawerToggle.syncState();
 
+        //삼선아이콘과 화살표 아이콘이 자동 변환되도록...
+        drawerLayout.addDrawerListener(drawerToggle);
 
 
 
@@ -95,8 +124,16 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     }//onCreate
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        drawerToggle.onOptionsItemSelected(item);
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void addCalendarView(CalendarView calendarView){
         calendarViews =calendarView;

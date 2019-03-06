@@ -60,7 +60,7 @@ public class Page2Fragment extends Fragment {
       Calendar calendarAdd;
 
       MainActivity mainActivity;
-    Page3Fragment page3Fragment;
+    //Page3Fragment page3Fragment;
 
       boolean isPless=true;
 
@@ -162,10 +162,9 @@ public class Page2Fragment extends Fragment {
                         mainActivity.addItem2(page2Item);
 
 
-                        while (isPless){
-                            page3Fragment=(Page3Fragment) getFragmentManager().getFragments().get(2); // 플래그먼트 추가
-                            isPless=false;
-                            }
+
+                          Page3Fragment  page3Fragment=(Page3Fragment) getFragmentManager().getFragments().get(2); // 플래그먼트 추가
+
                         page3Fragment.getItemfg2(page2Item);
 
 

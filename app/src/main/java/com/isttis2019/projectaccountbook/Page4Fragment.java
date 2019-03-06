@@ -20,6 +20,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -49,11 +50,8 @@ public class Page4Fragment extends Fragment {
     Calendar calendar;
     ArrayList<BarEntry> entries=new ArrayList<>();
 
-    int val;
-
-    int year;
-    int month;
-    int date=1;
+    BarDataSet dataSet;
+    BarData data;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,34 +72,23 @@ public class Page4Fragment extends Fragment {
             page1Items=mainActivity.getItems();
             page2Items=mainActivity.getItem2s();
 
-            for ( int k=0; k<page1Items.size(); k++){
-                String s=page1Items.get(k).getToDay();
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-                try {
-                    Date date=sdf.parse(s);
-                    calendar.setTime(date);
-                    String num=page1Items.get(k).moneyData;
-                    int num2=Integer.parseInt(num);
-                    int nums=0;
-                    nums+=num2;
-                    for (int i=0; i< 12; i++){
-                        if (i== calendar.get(Calendar.MONDAY)){
-//                            Toast.makeText(getContext(), "true ,"+ i, Toast.LENGTH_SHORT).show();
-                            entries.add(new BarEntry(i+1, nums));
-
-                        }
-
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-            }///////////////////추출
-
-            BarDataSet dataSet=new BarDataSet( entries,"지출");
+        }
 
 
-            BarData data=new BarData(dataSet);
+        if (page1Items!=null && page2Items!=null){
+            for (int i=0; i<12; i++){
+                entries.add(new BarEntry(i+1, 0));
+            }
+
+        }
+
+
+          dataSet=new BarDataSet( entries,"지출");
+            dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+
+            data=new BarData(dataSet);
+
 
             data.setDrawValues(true);
             data.setValueTextSize(0);
@@ -110,50 +97,117 @@ public class Page4Fragment extends Fragment {
             barChart.setData(data);
             barChart.setDrawValueAboveBar(true);
             barChart.setHighlightFullBarEnabled(true);
+
             barChart.getDescription().setEnabled(false);
             barChart.getLegend().setEnabled(false);
             barChart.getAxisRight().setEnabled(false);
+            barChart.getAxisLeft().setMinWidth(0);
 
             XAxis xAxis=barChart.getXAxis();
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xAxis.setAvoidFirstLastClipping(false);
 
+            YAxis yAxis=barChart.getAxisLeft();
+            yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+            yAxis.setMinWidth(0);
             xAxis.setGranularity(1);
 
 
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (page1Items.size() != 0){
 
-        }
+                    addchart();
+                    btn1.setBackgroundColor(Color.YELLOW);
+                    btn2.setBackgroundColor(Color.WHITE);
 
+                }else {
+                    Toast.makeText(getContext(), "아이템이없습니다.", Toast.LENGTH_SHORT).show();
+                    btn1.setBackgroundColor(Color.WHITE);
+                }
 
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (page2Items.size()!=0){
+                    add2Chart();
+                    btn2.setBackgroundColor(Color.YELLOW);
+                    btn1.setBackgroundColor(Color.WHITE);
+                }else {
+                    Toast.makeText(getContext(), "아이템이없습니다", Toast.LENGTH_SHORT).show();
+                    btn2.setBackgroundColor(Color.WHITE);
+                }
+            }
+        });
 
 
             return view;
         }
+        //////////////////////////////oncreat
+        void addchart(){
+ for ( int k=0; k<page1Items.size(); k++){
+        String s=page1Items.get(k).getToDay();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+        try {
+            Date date=sdf.parse(s);
+            calendar.setTime(date);
+            String num=page1Items.get(k).moneyData;
+            int num2=Integer.parseInt(num);
+            int nums=0;
+            nums+=num2;
+            for (int i=0; i< 12; i++){
+                if (i== calendar.get(Calendar.MONDAY)){
 
+                    entries.add(new BarEntry(i+1, nums));
 
+                }else{
+                    entries.add(new BarEntry(i+1, 0));
+                }
+
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }///////////////////추출
+
+        }
+
+        void add2Chart() {
+        for (int i=0; i<page2Items.size(); i++){
+            String str=page2Items.get(i).getToDay();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+            Date date= null;
+            try {
+                date = sdf.parse(str);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            calendar.setTime(date);
+            String num=page2Items.get(i).money;
+            int num2=Integer.parseInt(num);
+            int nums=0;
+            nums+=num2;
+            for (int k=0; k<12; k++){
+                if (k== calendar.get(Calendar.MONDAY)){
+                    entries.add(new BarEntry(i+1, nums));
+                }else {
+                    entries.add(new BarEntry(i+1, 0));
+                }
+            }
+
+            }
+        }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BarDataSet dataSet=new BarDataSet( entries,"지출");
 
-
-                BarData data=new BarData(dataSet);
-
-                data.setDrawValues(true);
-                data.setValueTextSize(0);
-
-
-                barChart.setData(data);
-
-//                Toast.makeText(getContext(), "ge", Toast.LENGTH_SHORT).show();
-//                FragmentTransaction transaction=getFragmentManager().beginTransaction();
-//                transaction.detach(Page4Fragment.this).attach(Page4Fragment.this).commit();
-            }
-        });
 
     }
 
@@ -161,43 +215,6 @@ public class Page4Fragment extends Fragment {
 
 
 }
-
-
-
-
-
-//
-//     for (int i=0; i< page1Items.size(); i++){
-//        String days=page1Items.get(i).getToDay();
-//        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-//        Calendar calendar1= Calendar.getInstance();
-//        try {
-//        Date date=sdf.parse(days);
-//        calendar1.setTime(date);
-//
-//        for (int s=0 ;s< 13; s++){
-//        int k= calendar.get(Calendar.MONDAY)+s;
-//        if (k== calendar1.get(Calendar.MONDAY)){
-//        ////////////////////////월 체크 현제 내가 3월 찍으면 3월달
-//
-//
-//
-//        }
-//
-//        }
-//        } catch (ParseException e) {
-//        e.printStackTrace();
-//        }
-//
-//
-//
-//
-//
-//        }
-
-
-
-
 
 
 
