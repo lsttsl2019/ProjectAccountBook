@@ -1,6 +1,7 @@
 package com.isttis2019.projectaccountbook;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
   ArrayList<Page1Item> itemsPage1 = new ArrayList<>();
   ArrayList<Page2_item> itemsPage2= new ArrayList<>();
 
+
+  ArrayList<Parcelable> parcelables=new ArrayList<>();
+
    CalendarView calendarViews;
 
     @Override
@@ -76,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.menu_aa:
-                        Toast.makeText(MainActivity.this, "aaa", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(MainActivity.this, ExpenditureActivity.class );
+                        intent.putExtra("Item",parcelables);
+                        startActivity(intent);
+
                         break;
 
                     case R.id.menu_bb:
@@ -143,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 ///////////////////////////////////////////날짜를 분류하기 위한 캘리더 뷰
     public void addItem(Page1Item item){
         itemsPage1.add(item);
+        parcelables.add(new Parcelable(item.getToDay(),item.getMoneyData()));
 
     }
 
