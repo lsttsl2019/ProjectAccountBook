@@ -1,11 +1,16 @@
 package com.isttis2019.projectaccountbook;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.CharacterPickerDialog;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,10 +47,13 @@ public class ExpenditureActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenditure);
+
+
         barChart=findViewById(R.id.BarChrt);
         tvMothy=findViewById(R.id.na_mothy);
         tvYyaer=findViewById(R.id.na_year);
@@ -56,19 +64,53 @@ public class ExpenditureActivity extends AppCompatActivity {
         Intent intent=getIntent();
         parcelables=intent.getParcelableArrayListExtra("Item");
 
-        drawChart();
+        redrawChart();
 
 
     }
+ public void redrawChart(){
+     for (int k=1; k<32; k++){
+         entries.add(new BarEntry((float) k,0));
+     }
 
+     drawChart();
+
+     dataSet =new BarDataSet(entries, "지출");
+     dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+     data=new BarData(dataSet);
+     data.setDrawValues(true);
+     data.setValueTextSize(12);
+     data.setValueTextColor(Color.BLACK);
+
+
+     barChart.setData(data);
+     barChart.setDrawValueAboveBar(true);
+     barChart.setHighlightFullBarEnabled(true);
+
+     barChart.getDescription().setEnabled(false);
+     barChart.getLegend().setEnabled(false);
+     barChart.getAxisRight().setEnabled(false);
+     
+
+     XAxis xAxis=barChart.getXAxis();
+     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+     xAxis.setAvoidFirstLastClipping(false);
+     xAxis.setGranularityEnabled(true);
+     xAxis.setGranularity(1);
+     xAxis.setAxisMinimum(0);
+
+     YAxis yAxis=barChart.getAxisLeft();
+     yAxis.setAxisMinimum(0);
+
+
+ }
 
     public void drawChart(){
         if (parcelables!=null){
             for (int i=0; i< parcelables.size(); i++){
                 String s= parcelables.get(i).toDayDate;
-                Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, month+"", Toast.LENGTH_SHORT).show();
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+               SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
                 String moneydate= parcelables.get(i).moneyDate;
                 int money1=Integer.parseInt(moneydate);
                 int moneys=0;
@@ -76,77 +118,70 @@ public class ExpenditureActivity extends AppCompatActivity {
                 try {
                     Date date=sdf.parse(s);
                     calendar.setTime(date);
-                    Toast.makeText(this, "!!,  "+calendar.get(Calendar.DAY_OF_MONTH), Toast.LENGTH_SHORT).show();
-                    if (calendar.get(Calendar.MONTH)==month){
+                    if( (calendar.get(Calendar.MONTH)+1)==month){
+
                         for (int k=1; k<32; k++){
                             if (calendar.get(Calendar.DAY_OF_MONTH)==k){
-                                Toast.makeText(this, ""+k, Toast.LENGTH_SHORT).show();
-                                entries.add(new BarEntry(k,moneys));
+//                                entries.add(new BarEntry(k,moneys));
+                                entries.get(k).setY(moneys);
                             }else {
-                                Toast.makeText(this, "false", Toast.LENGTH_SHORT).show();
-                                entries.add(new BarEntry(k,null));
+//                                entries.add(new BarEntry(k,0f));
                             }
                         }
+
+                    }else {
+
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
 
-            dataSet =new BarDataSet(entries, "지출");
-            dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
-            data=new BarData(dataSet);
-            data.setDrawValues(true);
-            data.setValueTextSize(12);
-            data.setValueTextColor(Color.BLACK);
-
-            barChart.setData(data);
-            barChart.setDrawValueAboveBar(true);
-            barChart.setHighlightFullBarEnabled(true);
-
-            barChart.getDescription().setEnabled(false);
-            barChart.getLegend().setEnabled(false);
-            barChart.getAxisRight().setEnabled(false);
-
-            XAxis xAxis=barChart.getXAxis();
-            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-            xAxis.setAvoidFirstLastClipping(false);
-
-           xAxis.setAxisMinimum(0);
-           xAxis.setGranularity(1);
 
 
         }
     }
 
     public void clcikBefore(View view) {
+        entries.clear();
+        barChart.clear();
+
+        month--;
         if (month>0){
-            month--;
             tvMothy.setText(month+"");
         }else if (month==0){
-            month=12;
             year--;
+            month=12;
             tvMothy.setText(month+"");
             tvYyaer.setText(year+"");
         }
+
+        redrawChart();
+
 
 
     }
 
     public void clickNext(View view) {
+        entries.clear();
+        barChart.clear();
+
+        month++;
         if(month<13){
-            month++;
             tvMothy.setText(month+"");
         }else {
-            month=1;
             year++;
+            month=1;
             tvMothy.setText(month+"");
-            tvYyaer.setText(year+"'");
+            tvYyaer.setText(year+"");
         }
-    }
-}
 
+        redrawChart();
+
+    }
+
+}
 
 
 
