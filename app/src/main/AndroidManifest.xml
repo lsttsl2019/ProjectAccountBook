@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExpenditureActivity"></activity>
+        <activity android:name=".IncomeActivity"></activity>
+        <activity android:name=".ExpenditureActivity" />
         <activity android:name=".Page1Fragment" />
         <activity
             android:name=".MainActivity"

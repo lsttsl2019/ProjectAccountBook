@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".IncomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+        <TextView
+            android:id="@+id/na_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="2019"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:paddingLeft="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수입"
+            android:textColor="#082AEC"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_centerInParent="true"
+            />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/iv_before"
+            android:layout_width="30sp"
+            android:layout_height="40sp"
+            android:src="@drawable/icon_before"
+            android:scaleType="centerCrop"
+            android:layout_toLeftOf="@id/na_mothy"
+            android:layout_marginRight="45sp"
+            android:clickable="true"
+            android:onClick="clcikBefore"
+            />
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="30sp"
+            android:layout_height="40sp"
+            android:src="@drawable/icon_next"
+            android:scaleType="centerCrop"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="90sp"
+            android:clickable="true"
+            android:onClick="clickNext"
+            />
+        <TextView
+            android:id="@+id/na_mothy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="3"
+            android:textStyle="bold"
+            android:textSize="32dp"
+            android:layout_centerInParent="true"
+            android:textColor="#000"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/na_mothy"
+            android:paddingLeft="8dp"
+            android:text="월"
+            android:textColor="#000"
+            android:textSize="24sp"
+            android:layout_alignBaseline="@id/na_mothy"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/BarChrt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.github.mikephil.charting.charts.BarChart>
+
+
+
+</LinearLayout>

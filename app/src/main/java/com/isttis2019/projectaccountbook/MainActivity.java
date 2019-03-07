@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
   ArrayList<Parcelable> parcelables=new ArrayList<>();
+  ArrayList<Parcelable2> parcelable2s=new ArrayList<>();
 
    CalendarView calendarViews;
 
@@ -85,9 +86,11 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
 
                         break;
-
                     case R.id.menu_bb:
-                        Toast.makeText(MainActivity.this, "bbb", Toast.LENGTH_SHORT).show();
+                        Intent intent2=new Intent(MainActivity.this,IncomeActivity.class);
+                        intent2.putExtra("items",parcelable2s);
+                        startActivity(intent2);
+
                         break;
                 }
                     drawerLayout.closeDrawer(navigationView,true);
@@ -168,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void addItem2(Page2_item item2){
         itemsPage2.add(item2);
+        parcelable2s.add(new Parcelable2(item2.getToDay(),item2.getMoney()));
+
     }
 
     public ArrayList<Page2_item> getItem2s(){
