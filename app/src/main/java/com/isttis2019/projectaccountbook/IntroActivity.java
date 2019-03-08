@@ -6,7 +6,19 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,6 +30,10 @@ public class IntroActivity extends AppCompatActivity {
 
 Timer timer=new Timer();
 
+
+ArrayList<Page1Item> page1Items=new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +43,7 @@ Timer timer=new Timer();
 
         Animation ani= AnimationUtils.loadAnimation(this,R.anim.appear_logo);
         iv.startAnimation(ani);
-
+        loadServerExpend();
         timer.schedule(task, 4000);
 
 
@@ -37,11 +53,68 @@ Timer timer=new Timer();
         @Override
         public void run() {
             Intent intent=new Intent(IntroActivity.this, MainActivity.class);
+
+
+
             startActivity(intent);
 
             finish();
 
         }
     };
+String today;
+String place;
+String time;
+String money;
+String path;
+
+    private void loadServerExpend(){
+        String serverURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJson.php";
+
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(serverURL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                page1Items.clear();
+                for (int i=0; i< response.length(); i++){
+                    JSONObject jsonObject=response.getJSONObject(i);
+
+                    today=jsonObject.getString("today");
+                    place=jsonObject.getString("place");
+                    time=jsonObject.getString("time");
+                    money=jsonObject.getString("money");
+                    path=jsonObject.getString("path");
+                    path="http://dlamtd123.dothome.co.kr/ProjectAccountBook"+path;
+
+
+                    }
+                    Toast.makeText(IntroActivity.this, ""+response.length(), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(IntroActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue queue= Volley.newRequestQueue(this);
+        queue.add(jsonArrayRequest);
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
