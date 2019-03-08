@@ -46,6 +46,7 @@ public class Page3Fragment extends Fragment {
    Fg3_ListView_Adapter2 fg3Adpter2;
     ArrayList<Fg3Page2Item> fg3Page2Item=new ArrayList<>();
 
+    Calendar calendars;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,8 +68,9 @@ public class Page3Fragment extends Fragment {
 
         mainActivity.addCalendarView(calendarView);
 
+
         for (Page1Item t: page1Item){
-            fg1.add(t.getCalendar());
+            fg1.add(Calendar.getInstance());
             fg1Today.add(t.getToDay());
         }
 
@@ -156,7 +158,7 @@ public class Page3Fragment extends Fragment {
         page2Item.add(item);
         if (page2Item != null){
             for (Page2_item t: page2Item){
-                fg2.add(t.getCalendar());
+                fg2.add(Calendar.getInstance());
                 fg2Today.add(t.getToDay());
             }
 

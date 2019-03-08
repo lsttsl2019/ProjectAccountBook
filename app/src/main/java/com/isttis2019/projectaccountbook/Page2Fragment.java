@@ -21,6 +21,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Cache;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.SimpleMultiPartRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -156,15 +164,16 @@ public class Page2Fragment extends Fragment {
                            data=cyear+""+(cmonth+1)+""+cday+"";
                         }
 
-                        Page2_item page2Item=new Page2_item(calendarAdd,day_year_month_day,time, item,money);
+
+                        Incomeadd();
+                        Page2_item page2Item=new Page2_item(day_year_month_day,time, item,money);
+
                         page2Items.add(0,page2Item);
 
                         mainActivity.addItem2(page2Item);
 
 
-
-                          Page3Fragment  page3Fragment=(Page3Fragment) getFragmentManager().getFragments().get(2); // 플래그먼트 추가
-
+                        Page3Fragment  page3Fragment=(Page3Fragment) getFragmentManager().getFragments().get(2); // 플래그먼트 추가
                         page3Fragment.getItemfg2(page2Item);
 
 
@@ -240,6 +249,33 @@ public class Page2Fragment extends Fragment {
     }
 
 
+    private void Incomeadd(){
+        String serverUrl="http://dlamtd123.dothome.co.kr/ProjectAccountBook/insertDBIncome.php";
+
+        SimpleMultiPartRequest multiPartRequest=new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getContext(), "완료", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        multiPartRequest.setCacheEntry(new Cache.Entry());
+        multiPartRequest.addStringParam("today",day_year_month_day);
+        multiPartRequest.addStringParam("income",item);
+        multiPartRequest.addStringParam("time", time);
+        multiPartRequest.addStringParam("money", money);
+
+
+        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+
+        requestQueue.add(multiPartRequest);
+
+    }
 
 
 }

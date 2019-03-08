@@ -4,19 +4,11 @@ import java.util.Calendar;
 
 public class Page2_item {
 
-       Calendar calendar;
        String toDay;
         String time;
         String item;
         String money;
 
-    public Calendar getCalendar() {
-        return calendar;
-    }
-
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
-    }
 
     public String getTime() {
         return time;
@@ -42,8 +34,8 @@ public class Page2_item {
         this.money = money;
     }
 
-    public Page2_item(Calendar calendar, String toDay,String time, String item, String money) {
-        this.calendar=calendar;
+    public Page2_item( String toDay,String time, String item, String money) {
+
         this.toDay=toDay;
         this.time = time;
         this.item = item;

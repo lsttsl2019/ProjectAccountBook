@@ -26,8 +26,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Cache;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.SimpleMultiPartRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -209,12 +219,16 @@ public class Page1Fragment extends Fragment {
 
                                 moneyAdd2+=moneyAdd;
 
-
+                            ///////////지출누적금액표시
                                 result.setText(moneyAdd2+"");
+
+
                                 /////////////////////////////////////////////////작업한내용물외부 서버에 보내기
 
 
-                                Page1Item item = new Page1Item(calendar, day_year_month_day ,place, dateTime,money, path);
+                                serveradd();
+
+                                Page1Item item = new Page1Item( day_year_month_day ,place, dateTime,money,  path);
 
                                 page1Items.add(item);
                                 mainActivity.addItem(item);
@@ -310,7 +324,7 @@ public class Page1Fragment extends Fragment {
             case PICK_IMAGE_REQUEST:
                 if (resultCode == RESULT_OK) {
                    uri=data.getData();
-//                finalPath=getRealPathFromUri(uri); //절대경로얻어옴.
+                   finalPath=getRealPathFromUri(uri); //절대경로얻어옴.
                     path = uri.toString();
 //                    Picasso.with(getContext()).load(uri).into(imgBill);
                     if (uri != null) {
@@ -324,18 +338,53 @@ public class Page1Fragment extends Fragment {
 
         }
         ///////////////절대경로
-//       String getRealPathFromUri(Uri uri){
-//       String[] proj= {MediaStore.Images.Media.DATA};
-//        CursorLoader loader= new CursorLoader(getContext(), uri, proj, null, null, null);
-//        Cursor cursor= loader.loadInBackground();
-//        int column_index= cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//        cursor.moveToFirst();
-//        String result= cursor.getString(column_index);
-//        cursor.close();
-//        return  result;
-//    }
+
 
     }
+    String getRealPathFromUri(Uri uri){
+        String[] proj= {MediaStore.Images.Media.DATA};
+        CursorLoader loader= new CursorLoader(getContext(), uri, proj, null, null, null);
+        Cursor cursor= loader.loadInBackground();
+        int column_index= cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result= cursor.getString(column_index);
+        cursor.close();
+        return  result;
+    }
+
+
+    ////////////////json으로 변환
+
+
+    private void serveradd(){
+        String serverUrl="http://dlamtd123.dothome.co.kr/ProjectAccountBook/insertDB.php";
+
+        SimpleMultiPartRequest multiPartRequest=new SimpleMultiPartRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getContext(), "완료", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        multiPartRequest.setCacheEntry(new Cache.Entry());
+        multiPartRequest.addStringParam("today",day_year_month_day);
+        multiPartRequest.addStringParam("place",place);
+        multiPartRequest.addStringParam("time", dateTime);
+        multiPartRequest.addStringParam("money", money);
+        multiPartRequest.addStringParam("path",path);
+
+        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+
+        requestQueue.add(multiPartRequest);
+
+
+    }
+
 }
 
 

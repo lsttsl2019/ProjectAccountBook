@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 public class Page1Item {
 
-    Calendar calendar;
+
     String toDay;
     String placeData;
     String timeData;
@@ -15,8 +15,8 @@ public class Page1Item {
 
 
 
-    public Page1Item(Calendar calendar, String toDay, String placeData, String timeData, String moneyData, String path ) {
-        this.calendar = calendar;
+    public Page1Item( String toDay, String placeData, String timeData, String moneyData, String path ) {
+
         this.toDay= toDay;
         this.placeData = placeData;
         this.timeData = timeData;
@@ -25,9 +25,7 @@ public class Page1Item {
 
     }
 
-    public Calendar getCalendar() {
-        return calendar;
-    }
+
 
     public String getToDay() {
         return toDay;
@@ -38,10 +36,6 @@ public class Page1Item {
 
     public void setToDay(String toDay) {
         this.toDay = toDay;
-    }
-
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
     }
 
     public String getPlaceData() {
