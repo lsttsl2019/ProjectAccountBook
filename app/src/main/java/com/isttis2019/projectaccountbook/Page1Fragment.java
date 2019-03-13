@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -324,7 +325,7 @@ public class Page1Fragment extends Fragment {
             case PICK_IMAGE_REQUEST:
                 if (resultCode == RESULT_OK) {
                    uri=data.getData();
-                   finalPath=getRealPathFromUri(uri); //절대경로얻어옴.
+                  // finalPath=getRealPathFromUri(uri); //절대경로얻어옴.
                     path = uri.toString();
 //                    Picasso.with(getContext()).load(uri).into(imgBill);
                     if (uri != null) {
@@ -353,7 +354,6 @@ public class Page1Fragment extends Fragment {
     }
 
 
-    ////////////////json으로 변환
 
 
     private void serveradd(){
@@ -367,6 +367,7 @@ public class Page1Fragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

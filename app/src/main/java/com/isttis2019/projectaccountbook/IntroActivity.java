@@ -32,6 +32,7 @@ Timer timer=new Timer();
 
 
 ArrayList<Page1Item> page1Items=new ArrayList<>();
+ArrayList<Page2_item>page2Items=new ArrayList<>();
 
 
     @Override
@@ -43,8 +44,9 @@ ArrayList<Page1Item> page1Items=new ArrayList<>();
 
         Animation ani= AnimationUtils.loadAnimation(this,R.anim.appear_logo);
         iv.startAnimation(ani);
-        loadServerExpend();
-        timer.schedule(task, 4000);
+      //  loadServerExpend();
+        loadServerInocome();
+        timer.schedule(task,4000 );
 
 
     }
@@ -54,19 +56,57 @@ ArrayList<Page1Item> page1Items=new ArrayList<>();
         public void run() {
             Intent intent=new Intent(IntroActivity.this, MainActivity.class);
 
-
-
             startActivity(intent);
+
 
             finish();
 
         }
     };
+
 String today;
 String place;
 String time;
 String money;
 String path;
+
+String income;
+
+
+    private void loadServerInocome(){
+        String serverURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJsonIncome.php";
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(serverURL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                    try {
+                        for (int i=0; i<response.length();i++) {
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            today=jsonObject.getString("today");
+                            income=jsonObject.getString("income");
+                            time=jsonObject.getString("time");
+                            money=jsonObject.getString("money");
+
+                            page2Items.add(new Page2_item(today,time,income,money));
+
+                        }
+                        Toast.makeText(IntroActivity.this, ""+page2Items.size(), Toast.LENGTH_SHORT).show();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(IntroActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 
     private void loadServerExpend(){
         String serverURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJson.php";
@@ -86,9 +126,12 @@ String path;
                     path=jsonObject.getString("path");
                     path="http://dlamtd123.dothome.co.kr/ProjectAccountBook"+path;
 
+                    page1Items.add(new Page1Item(today,place,time,money,path));
+
 
                     }
-                    Toast.makeText(IntroActivity.this, ""+response.length(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(IntroActivity.this, ""+response.length(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(IntroActivity.this, ""+page1Items.size(), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -103,6 +146,8 @@ String path;
         RequestQueue queue= Volley.newRequestQueue(this);
         queue.add(jsonArrayRequest);
     }
+
+
 
 }
 
