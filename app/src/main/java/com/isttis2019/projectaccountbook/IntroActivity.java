@@ -44,8 +44,12 @@ ArrayList<Page2_item>page2Items=new ArrayList<>();
 
         Animation ani= AnimationUtils.loadAnimation(this,R.anim.appear_logo);
         iv.startAnimation(ani);
-      //  loadServerExpend();
+
+         loadServerExpend();
         loadServerInocome();
+
+
+
         timer.schedule(task,4000 );
 
 
@@ -104,6 +108,8 @@ String income;
                 Toast.makeText(IntroActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        RequestQueue queue= Volley.newRequestQueue(this);
+        queue.add(jsonArrayRequest);
 
     }
 
@@ -130,8 +136,8 @@ String income;
 
 
                     }
-                Toast.makeText(IntroActivity.this, ""+response.length(), Toast.LENGTH_SHORT).show();
-//                    Toast.makeText(IntroActivity.this, ""+page1Items.size(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(IntroActivity.this, ""+response.length(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IntroActivity.this, ""+page1Items.size(), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
