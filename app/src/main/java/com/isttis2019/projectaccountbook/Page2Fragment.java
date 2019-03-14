@@ -111,7 +111,7 @@ public class Page2Fragment extends Fragment {
                 Calendar calendar=Calendar.getInstance();
                 calendar.setTime(date);
                 int ns=calendar.get(Calendar.MONTH);
-                Toast.makeText(getContext(), ""+ns, Toast.LENGTH_SHORT).show();
+                
                 if (ns == Calendar.getInstance().get(Calendar.MONTH)){
                     String s= pbincomes.get(i).money;
                     int moneyIn=Integer.parseInt(s);
