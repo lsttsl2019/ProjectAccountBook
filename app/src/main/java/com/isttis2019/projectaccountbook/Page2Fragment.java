@@ -30,6 +30,7 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -91,13 +92,37 @@ public class Page2Fragment extends Fragment {
         pbincomes=mainActivity.parcelableIncomes;
 
         serverItem();
-        //Toast.makeText(mainActivity, ""+pbincomes.size(), Toast.LENGTH_SHORT).show();
+        addText();
+        tvMoneyAdd.setText(results+"");
+
 
         return view;
 
     }
 
+    int results;
 
+    public  void addText(){
+        for (int i=0; i <pbincomes.size(); i++){
+            String num = pbincomes.get(i).today;
+            SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMdd");
+            try {
+                Date date=sdf.parse(num);
+                Calendar calendar=Calendar.getInstance();
+                calendar.setTime(date);
+                int ns=calendar.get(Calendar.MONTH);
+                Toast.makeText(getContext(), ""+ns, Toast.LENGTH_SHORT).show();
+                if (ns == Calendar.getInstance().get(Calendar.MONTH)){
+                    String s= pbincomes.get(i).money;
+                    int moneyIn=Integer.parseInt(s);
+                    results+=moneyIn;
+
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public void serverItem(){
 
@@ -175,7 +200,9 @@ public class Page2Fragment extends Fragment {
                         int moneyadd=Integer.parseInt(money);
 
                         mnresult+=moneyadd;
-                        tvMoneyAdd.setText(mnresult+"");
+
+
+
                         ////누적시킨하루 금액
 
                         data=day_year_month_day;
@@ -186,6 +213,12 @@ public class Page2Fragment extends Fragment {
                             cday=calendar.get(Calendar.DAY_OF_MONTH);
                            data=cyear+""+(cmonth+1)+""+cday+"";
                         }
+
+                        if (cmonth==Calendar.getInstance().get(Calendar.MONTH)){
+                            results+= moneyadd;
+                            tvMoneyAdd.setText(""+results);
+                        }
+
 
 
                         Incomeadd();
