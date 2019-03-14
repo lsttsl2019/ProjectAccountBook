@@ -122,6 +122,7 @@ public class Page1Fragment extends Fragment {
         listView.setAdapter(listViewAdapter);
         //parcelableExpneds=mainActivity.parcelableExpneds;
 
+        listView.setSelection(page1Items.size()-1);
 
         listViewAdapter.notifyDataSetChanged();
         result.setText(resutlts+"");

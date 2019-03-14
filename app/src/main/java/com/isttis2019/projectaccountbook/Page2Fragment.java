@@ -90,7 +90,7 @@ public class Page2Fragment extends Fragment {
         listView.setAdapter(page2ListViewAdapter);
         mainActivity= (MainActivity) getActivity();
         pbincomes=mainActivity.parcelableIncomes;
-
+        listView.setSelection(page2Items.size()-1);
         serverItem();
         addText();
         tvMoneyAdd.setText(results+"");
