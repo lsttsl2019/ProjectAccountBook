@@ -10,6 +10,8 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -40,6 +42,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,13 +100,15 @@ public class Page1Fragment extends Fragment {
     int moneyAdd2;
     MainActivity mainActivity;
 
+    ArrayList<ParcelableExpned> parcelableExpneds=new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view=inflater.inflate(R.layout.fragment_page1, container,false);
 
 
-        mainActivity = (MainActivity) getActivity();
+       // mainActivity = (MainActivity) getActivity();
 
         btnSave=view.findViewById(R.id.btn_Save);
         ed=view.findViewById(R.id.ed_expenditure);
@@ -115,17 +120,69 @@ public class Page1Fragment extends Fragment {
         listView=view.findViewById(R.id.page01_listview);
         listViewAdapter=new Page1_ListView_Adapter(page1Items,getContext());
         listView.setAdapter(listViewAdapter);
+        //parcelableExpneds=mainActivity.parcelableExpneds;
 
 
-
+        listViewAdapter.notifyDataSetChanged();
+        result.setText(resutlts+"");
 
 
         return view;
     }
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mainActivity = (MainActivity) getActivity();
+        parcelableExpneds=mainActivity.parcelableExpneds;
+
+
+        expnedItem();
+        setText();
+    }
+int resutlts;
+
+    public void expnedItem(){
+        for (int i=0; i<parcelableExpneds.size();i++){
+            Page1Item page1Item=new Page1Item(parcelableExpneds.get(i).getToday(),parcelableExpneds.get(i).getPlace(),parcelableExpneds.get(i).getTime(),parcelableExpneds.get(i).getMoney(),parcelableExpneds.get(i).getPath());
+            page1Items.add(page1Item);
+            mainActivity.addItem(page1Item);
+        }
+
+
+
+    }
+
+    public void setText(){
+        for (int i=0; i<parcelableExpneds.size();i++){
+            String day= parcelableExpneds.get(i).today;
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+            try {
+                Date date=sdf.parse(day);
+                Calendar calendar=Calendar.getInstance();
+                calendar.setTime(date);
+                int ns=calendar.get(Calendar.MONTH);
+                if (ns==Calendar.getInstance().get(Calendar.MONTH)){
+                    String s=parcelableExpneds.get(i).money;
+                    int exMoney=Integer.parseInt(s);
+                    resutlts+=exMoney;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+    }
+
+
+
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
             btnSave.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -218,10 +275,20 @@ public class Page1Fragment extends Fragment {
 
                                 int moneyAdd=Integer.parseInt(money);
 
-                                moneyAdd2+=moneyAdd;
+                                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+                            try {
+                                Date date1= sdf.parse(day);
+                                Calendar calendar=Calendar.getInstance();
+                                calendar.setTime(date1);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            if (Calendar.getInstance().get(Calendar.MONTH)==calendar.get(Calendar.MONTH)){
+                                resutlts+=moneyAdd;
+                            }
 
                             ///////////지출누적금액표시
-                                result.setText(moneyAdd2+"");
+                                result.setText(resutlts+"");
 
 
                                 /////////////////////////////////////////////////작업한내용물외부 서버에 보내기

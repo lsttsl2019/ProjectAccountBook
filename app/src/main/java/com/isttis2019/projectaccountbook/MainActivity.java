@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
    CalendarView calendarViews;
 
+
+   ArrayList<ParcelableExpned> parcelableExpneds=new ArrayList<>();
+   ArrayList<ParcelableIncome> parcelableIncomes=new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,9 +137,15 @@ public class MainActivity extends AppCompatActivity {
     });
 
 
+    Intent intent=getIntent();
+    parcelableExpneds=intent.getParcelableArrayListExtra("itemEx");
+    parcelableIncomes=intent.getParcelableArrayListExtra("itemIn");
 
+
+
+         page3Fragment= (Page3Fragment) fragmentsAdapter.getItem(2);
     }//onCreate
-
+    Page3Fragment page3Fragment;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -148,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
     public void addCalendarView(CalendarView calendarView){
         calendarViews =calendarView;
     }
+
+ public  Page3Fragment  getPage3Fragment() {
+     return page3Fragment;
+     }
+
 
 
 ///////////////////////////////////////////날짜를 분류하기 위한 캘리더 뷰

@@ -1,5 +1,6 @@
 package com.isttis2019.projectaccountbook;
 
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
@@ -34,6 +36,8 @@ Timer timer=new Timer();
 ArrayList<Page1Item> page1Items=new ArrayList<>();
 ArrayList<Page2_item>page2Items=new ArrayList<>();
 
+ArrayList<ParcelableExpned> parcelables=new ArrayList<>();
+ArrayList<ParcelableIncome> parcelableIncomes=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,7 @@ ArrayList<Page2_item>page2Items=new ArrayList<>();
 
 
 
-        timer.schedule(task,4000 );
+        timer.schedule(task,5000 );
 
 
     }
@@ -58,6 +62,8 @@ ArrayList<Page2_item>page2Items=new ArrayList<>();
         @Override
         public void run() {
             Intent intent=new Intent(IntroActivity.this, MainActivity.class);
+            intent.putParcelableArrayListExtra("itemEx", parcelables);
+            intent.putParcelableArrayListExtra("itemIn", parcelableIncomes);
 
             startActivity(intent);
 
@@ -80,7 +86,7 @@ String path;
     private void loadServer(){
         String serverURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJson.php";
         String serverIcomeURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJsonIncome.php";
-        JsonArrayRequest jsonArrayRequesticome=new JsonArrayRequest(serverIcomeURL, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequesticome=new JsonArrayRequest(Request.Method.POST,serverIcomeURL, null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
             page2Items.clear();
@@ -93,6 +99,7 @@ String path;
                         String inMoney=jsonObjects.getString("money");
 
                         page2Items.add(new Page2_item(inToday,inTime, income,inMoney));
+                        parcelableIncomes.add(new ParcelableIncome(inToday,income, inTime,inMoney));
                     }
 
                 } catch (JSONException e) {
@@ -106,7 +113,7 @@ String path;
             }
         });
 
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(serverURL, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.POST,serverURL, null,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
@@ -119,14 +126,20 @@ String path;
                     time=jsonObject.getString("time");
                     money=jsonObject.getString("money");
                     path=jsonObject.getString("path");
-                    path="http://dlamtd123.dothome.co.kr/ProjectAccountBook"+path;
+                    //path="http://dlamtd123.dothome.co.kr/ProjectAccountBook"+path;
 
                     page1Items.add(new Page1Item(today,place,time,money,path));
 
 
-                    }
+
+                }
+                for (int i=0; i< page1Items.size(); i++){
+                    parcelables.add(new ParcelableExpned(page1Items.get(i).toDay,page1Items.get(i).placeData,page1Items.get(i).timeData,page1Items.get(i).moneyData,page1Items.get(i).path));
+                }
+                 //   Toast.makeText(IntroActivity.this, ""+parcelables.size(), Toast.LENGTH_SHORT).show();
+
                // Toast.makeText(IntroActivity.this, ""+response.length(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(IntroActivity.this, ""+page1Items.size(), Toast.LENGTH_SHORT).show();
+               //     Toast.makeText(IntroActivity.this, ""+page1Items.size(), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -47,6 +47,7 @@ public class Page3Fragment extends Fragment {
     ArrayList<Fg3Page2Item> fg3Page2Item=new ArrayList<>();
 
     Calendar calendars;
+    boolean istrue= true;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +70,34 @@ public class Page3Fragment extends Fragment {
         mainActivity.addCalendarView(calendarView);
 
 
+//       while (istrue){
+//           page2Item=mainActivity.getItemsPage2();
+//
+//           if (page2Item != null){
+//               for (Page2_item t: page2Item){
+//                   fg2.add(Calendar.getInstance());
+//                   fg2Today.add(t.getToDay());
+//               }
+//
+//               for (int i=0; i<fg2Today.size(); i++){
+//                   String stoDay=fg2Today.get(i);
+//                   SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+//                   try {
+//                       Date date=sdf.parse(stoDay);
+//                       fg2.get(i).setTime(date);
+//                       days.add(new EventDay(fg2.get(i),R.drawable.ic_dot2));
+//                   } catch (ParseException e) {
+//                       e.printStackTrace();
+//                   }
+//               }
+//           }
+//
+//            istrue=false;
+//       }
+
+
+        additems();
+
         for (Page1Item t: page1Item){
             fg1.add(Calendar.getInstance());
             fg1Today.add(t.getToDay());
@@ -89,6 +118,8 @@ public class Page3Fragment extends Fragment {
 
 
 
+
+
         calendarView.setEvents(days);
 
 
@@ -102,6 +133,7 @@ public class Page3Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
 
         if (fg1 !=null || fg2 !=null){
@@ -154,7 +186,34 @@ public class Page3Fragment extends Fragment {
 
     }
 
+    public  void additems(){
+        page2Item=mainActivity.getItem2s();
+        if (page2Item != null){
+            for (Page2_item t: page2Item){
+                fg2.add(Calendar.getInstance());
+                fg2Today.add(t.getToDay());
+            }
+
+            for (int i=0; i<fg2Today.size(); i++){
+                String stoDay=fg2Today.get(i);
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+                try {
+                    Date date=sdf.parse(stoDay);
+                    fg2.get(i).setTime(date);
+                    days.add(new EventDay(fg2.get(i),R.drawable.ic_dot2));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        }
+
+    }
+
     public void getItemfg2(Page2_item item){
+
+
         page2Item.add(item);
         if (page2Item != null){
             for (Page2_item t: page2Item){

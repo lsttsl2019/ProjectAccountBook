@@ -64,14 +64,11 @@ public class Page1_ListView_Adapter extends BaseAdapter {
        Page1Item page1Item=page1Items.get(position);
 
         if (page1Item.path==null){
-
                 Picasso.with(context).load(R.drawable.img_back01).into(imgbill);
         }else {
             uri=Uri.parse(page1Item.path);
-            Glide.with(context).load(uri).into(imgbill);
+            Picasso.with(context).load(uri).into(imgbill);
         }
-
-
 
 
 

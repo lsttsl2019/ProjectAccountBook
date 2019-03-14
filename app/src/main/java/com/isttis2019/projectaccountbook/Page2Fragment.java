@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,9 @@ public class Page2Fragment extends Fragment {
 
       boolean isPless=true;
 
+      ArrayList<ParcelableIncome> pbincomes=new ArrayList<>();
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,9 +88,28 @@ public class Page2Fragment extends Fragment {
         page2ListViewAdapter= new Page2_ListView_Adapter(page2Items, getContext());
         listView.setAdapter(page2ListViewAdapter);
         mainActivity= (MainActivity) getActivity();
+        pbincomes=mainActivity.parcelableIncomes;
 
+        serverItem();
+        //Toast.makeText(mainActivity, ""+pbincomes.size(), Toast.LENGTH_SHORT).show();
 
         return view;
+
+    }
+
+
+
+    public void serverItem(){
+
+
+        for (int i=0; i<pbincomes.size(); i++){
+            Page2_item page2Ites=new Page2_item(pbincomes.get(i).today,pbincomes.get(i).getTime(),pbincomes.get(i).income,pbincomes.get(i).money);
+            page2Items.add(page2Ites);
+            mainActivity.addItem2(page2Ites);
+
+            page2ListViewAdapter.notifyDataSetChanged();
+
+        }
     }
 
     @Override
@@ -168,14 +191,17 @@ public class Page2Fragment extends Fragment {
                         Incomeadd();
                         Page2_item page2Item=new Page2_item(day_year_month_day,time, item,money);
 
-                        page2Items.add(0,page2Item);
+                        page2Items.add(page2Item);
 
                         mainActivity.addItem2(page2Item);
 
+//
+                        Page3Fragment  page3Fragment=mainActivity.getPage3Fragment(); // 플래그먼트 추가
+//                        page3Fragment.getItemfg2(page2Item);
 
-                        Page3Fragment  page3Fragment=(Page3Fragment) getFragmentManager().getFragments().get(2); // 플래그먼트 추가
-                        page3Fragment.getItemfg2(page2Item);
 
+                            FragmentTransaction ft=getFragmentManager().beginTransaction();
+                            ft.detach(page3Fragment).attach(page3Fragment).commit();
 
 
                         page2ListViewAdapter.notifyDataSetChanged();
