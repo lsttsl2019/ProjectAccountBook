@@ -45,8 +45,7 @@ ArrayList<Page2_item>page2Items=new ArrayList<>();
         Animation ani= AnimationUtils.loadAnimation(this,R.anim.appear_logo);
         iv.startAnimation(ani);
 
-         loadServerExpend();
-        loadServerInocome();
+         loadServer();
 
 
 
@@ -74,48 +73,38 @@ String time;
 String money;
 String path;
 
-String income;
 
 
-    private void loadServerInocome(){
-        String serverURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJsonIncome.php";
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(serverURL, new Response.Listener<JSONArray>() {
+
+
+    private void loadServer(){
+        String serverURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJson.php";
+        String serverIcomeURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJsonIncome.php";
+        JsonArrayRequest jsonArrayRequesticome=new JsonArrayRequest(serverIcomeURL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+            page2Items.clear();
+                try {
+                    for (int i=0; i< response.length(); i++){
+                        JSONObject jsonObjects=response.getJSONObject(i);
+                        String inToday= jsonObjects.getString("today");
+                        String income=jsonObjects.getString("income");
+                        String inTime=jsonObjects.getString("time");
+                        String inMoney=jsonObjects.getString("money");
 
-                    try {
-                        for (int i=0; i<response.length();i++) {
-                            JSONObject jsonObject = response.getJSONObject(i);
-                            today=jsonObject.getString("today");
-                            income=jsonObject.getString("income");
-                            time=jsonObject.getString("time");
-                            money=jsonObject.getString("money");
-
-                            page2Items.add(new Page2_item(today,time,income,money));
-
-                        }
-                        Toast.makeText(IntroActivity.this, ""+page2Items.size(), Toast.LENGTH_SHORT).show();
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        page2Items.add(new Page2_item(inToday,inTime, income,inMoney));
                     }
 
-
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(IntroActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
-        RequestQueue queue= Volley.newRequestQueue(this);
-        queue.add(jsonArrayRequest);
-
-    }
-
-
-    private void loadServerExpend(){
-        String serverURL="http://dlamtd123.dothome.co.kr/ProjectAccountBook/loadDtoJson.php";
 
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(serverURL, new Response.Listener<JSONArray>() {
             @Override
@@ -151,6 +140,8 @@ String income;
 
         RequestQueue queue= Volley.newRequestQueue(this);
         queue.add(jsonArrayRequest);
+        queue.add(jsonArrayRequesticome);
+
     }
 
 
