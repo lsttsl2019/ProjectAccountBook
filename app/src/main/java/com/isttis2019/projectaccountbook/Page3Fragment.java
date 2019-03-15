@@ -70,31 +70,6 @@ public class Page3Fragment extends Fragment {
         mainActivity.addCalendarView(calendarView);
 
 
-//       while (istrue){
-//           page2Item=mainActivity.getItemsPage2();
-//
-//           if (page2Item != null){
-//               for (Page2_item t: page2Item){
-//                   fg2.add(Calendar.getInstance());
-//                   fg2Today.add(t.getToDay());
-//               }
-//
-//               for (int i=0; i<fg2Today.size(); i++){
-//                   String stoDay=fg2Today.get(i);
-//                   SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-//                   try {
-//                       Date date=sdf.parse(stoDay);
-//                       fg2.get(i).setTime(date);
-//                       days.add(new EventDay(fg2.get(i),R.drawable.ic_dot2));
-//                   } catch (ParseException e) {
-//                       e.printStackTrace();
-//                   }
-//               }
-//           }
-//
-//            istrue=false;
-//       }
-
 
         additems();
 

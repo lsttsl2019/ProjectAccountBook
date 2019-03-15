@@ -293,8 +293,6 @@ int resutlts;
 
 
                                 /////////////////////////////////////////////////작업한내용물외부 서버에 보내기
-
-
                                 serveradd();
 
                                 Page1Item item = new Page1Item( day_year_month_day ,place, dateTime,money,  path);
@@ -302,13 +300,9 @@ int resutlts;
                                 page1Items.add(item);
                                 mainActivity.addItem(item);
 
-
-
                             listViewAdapter.notifyDataSetChanged();
 
                         }
-
-
 
                         }//데이터 추가작업
                     });
@@ -322,10 +316,7 @@ int resutlts;
                        }
                     });
 
-
                     builder.create().show();
-
-
 
                     btnDay.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -337,14 +328,10 @@ int resutlts;
                             cday=calendar.get(Calendar.DAY_OF_MONTH);
 
 
-
                             final DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-
                                  G.year=view.getYear()+"";
-
                                  if (view.getDayOfMonth()>=10){
                                      G.dayOfMonth=view.getDayOfMonth()+"";
                                  }else {
@@ -365,7 +352,6 @@ int resutlts;
                             };
                             DatePickerDialog dialog=new DatePickerDialog(getActivity(),dateSetListener,cyear,cmonth,cday);
                             dialog.show();
-
 
                         }
                     });//날짜 받아오는 버튼
