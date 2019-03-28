@@ -96,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent2);
 
                         break;
+                    case R.id.chtting:
+                        Intent intent3=new Intent(MainActivity.this, ChttingActivity.class);
+                        startActivity(intent3);
+                        break;
                 }
                     drawerLayout.closeDrawer(navigationView,true);
 

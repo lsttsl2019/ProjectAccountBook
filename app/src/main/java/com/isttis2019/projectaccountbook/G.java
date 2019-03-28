@@ -6,4 +6,8 @@ public class G {
     public static String month;
     public static String dayOfMonth;
 
+
+    public static String nickName;
+    public static String profileUrl;
+
 }

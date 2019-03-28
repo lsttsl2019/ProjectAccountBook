@@ -6,8 +6,8 @@ android {
         applicationId "com.isttis2019.projectaccountbook"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -44,4 +44,12 @@ dependencies {
     implementation 'dev.dworks.libs:volleyplus:+'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 
+
+
+
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-storage:16.0.1'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

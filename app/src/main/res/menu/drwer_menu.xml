@@ -12,6 +12,12 @@
 
     </item>
 
+    <item
+        android:id="@+id/chtting"
+        android:title="채팅"
+
+        />
+
 
 
 </menu>
