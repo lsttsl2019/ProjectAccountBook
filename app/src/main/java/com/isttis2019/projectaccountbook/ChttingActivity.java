@@ -49,7 +49,7 @@ public class ChttingActivity extends AppCompatActivity {
 
     public void clickImage(View view) {
             Intent intent=new Intent(Intent.ACTION_PICK);
-            intent.setType("imge/*");
+            intent.setType("image/*");
             startActivityForResult(intent, 10);
     }
 
@@ -106,6 +106,7 @@ public class ChttingActivity extends AppCompatActivity {
 
                     editor.putString("nickName", G.nickName);
                     editor.putString("profileUrl", G.profileUrl);
+
                     editor.commit();
 
 
