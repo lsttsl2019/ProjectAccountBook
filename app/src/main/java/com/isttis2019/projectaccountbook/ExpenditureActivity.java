@@ -61,11 +61,11 @@ public class ExpenditureActivity extends AppCompatActivity {
         year  =calendar.get(Calendar.YEAR);
         month = (calendar.get(Calendar.MONTH))+1;
 
+
         Intent intent=getIntent();
         parcelables=intent.getParcelableArrayListExtra("Item");
 
         redrawChart();
-
 
     }
  public void redrawChart(){
@@ -108,10 +108,12 @@ public class ExpenditureActivity extends AppCompatActivity {
 
     public void drawChart(){
         if (parcelables!=null){
+            tvMothy.setText(month+"");
             for (int i=0; i< parcelables.size(); i++){
                 String s= parcelables.get(i).toDayDate;
                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
                 String moneydate= parcelables.get(i).moneyDate;
+
                 int money1=Integer.parseInt(moneydate);
                 int moneys=0;
                 moneys+=money1;

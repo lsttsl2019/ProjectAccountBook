@@ -99,6 +99,7 @@ public class IncomeActivity extends AppCompatActivity {
 
     public void drawChart(){
         if (parcelable2s!=null){
+            tvMothy.setText(month+"");
             for (int i=0; i< parcelable2s.size(); i++){
                 String s= parcelable2s.get(i).toDayDate;
                 SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
