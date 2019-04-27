@@ -104,6 +104,7 @@ public class IncomeActivity extends AppCompatActivity {
                 String s= parcelable2s.get(i).toDayDate;
                 SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
                 String moneydate= parcelable2s.get(i).moneyDate;
+
                 int money1=Integer.parseInt(moneydate);
                 int moneys=0;
                 moneys+=money1;
