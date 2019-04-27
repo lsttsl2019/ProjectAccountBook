@@ -110,9 +110,7 @@ public class Page1Fragment extends Fragment {
 
        // mainActivity = (MainActivity) getActivity();
 
-        btnSave=view.findViewById(R.id.btn_Save);
-        ed=view.findViewById(R.id.ed_expenditure);
-        tvsave=view.findViewById(R.id.tv_Save);
+
         ivAdd=view.findViewById(R.id.iv_add);
         result=view.findViewById(R.id.tv_result);
 
@@ -185,30 +183,6 @@ int resutlts;
         super.onViewCreated(view, savedInstanceState);
 
 
-            btnSave.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    s=ed.getText().toString();
-                    if (s==null||s.equals("")){
-                        Toast.makeText(getActivity(), "금액을 설정하세요!!", Toast.LENGTH_SHORT).show();
-                    }else {
-                        if (btnSave.getText().toString().equals("저장")){
-                            tvsave.setText(s+"원");
-                            tvsave.setVisibility(View.VISIBLE);
-                            ed.setVisibility(View.INVISIBLE);
-                            btnSave.setText("수정");
-
-                        }else if (btnSave.getText().toString().equals("수정")){
-                            btnSave.setText("저장");
-                            ed.setVisibility(View.VISIBLE);
-                            tvsave.setVisibility(View.INVISIBLE);
-                            tvsave.setText("");
-                        }
-
-                    }
-
-                }
-            });
 
             //지출내역 아이템 추가시켜주는 리스너
             ivAdd.setOnClickListener(new View.OnClickListener() {
